@@ -22,7 +22,7 @@ Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill
 
 中文版:
 ```
-根据指令 https://raw.githubusercontent.com/reorc/kamay-cli-skill/refs/heads/main/SKILL.md 帮我安装配置 Kamay Cli 技能.
+根据文档说明 https://raw.githubusercontent.com/reorc/kamay-cli-skill/refs/heads/main/SKILL.md 帮我安装配置 Kamay Cli 技能.
 ```
 
 ## 适用场景

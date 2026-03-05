@@ -28,7 +28,7 @@ kamay --help
 kamay auth status
 ```
 
-如果系统未安装 kamay 程序，或者没有登录/登录过期，阅读并根据 [INSTALL.md](./references/INSTALL.md) 手册完成安装配置。
+如果系统未安装 kamay 程序，或者没有登录/登录过期，阅读并根据 [./references/INSTALL.md](./references/INSTALL.md) 文档完成安装配置。
 
 ## Amazon 模块
 
@@ -157,12 +157,12 @@ YYYY-MM-DD，如 `2024-01-01`
 
 ## 参考文档
 
-- [安装指南](references/INSTALL.md)
-- [Amazon 模块](references/amazon-commands.md)
-- [Google 模块](references/google-commands.md)
-- [Meta 模块](references/meta-commands.md)
-- [TikTok 模块](references/tiktok-commands.md)
-- [工作流示例](references/workflow-examples.md)
+- [安装指南 ./references/INSTALL.md](./references/INSTALL.md)
+- [Amazon 模块 ./references/amazon-commands.md](./references/amazon-commands.md)
+- [Google 模块 ./references/google-commands.md](./references/google-commands.md)
+- [Meta 模块 ./references/meta-commands.md](./references/meta-commands.md)
+- [TikTok 模块 ./references/tiktok-commands.md](./references/tiktok-commands.md)
+- [工作流示例 ./references/workflow-examples.md](./references/workflow-examples.md)
 
 ## 故障排除
 

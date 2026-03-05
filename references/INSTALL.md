@@ -6,11 +6,9 @@
 - **网络**: 需要连接 Kamay 后端服务
 - **认证**: 需要有效的 [Kamay](https://kamay.ai/) 账号
 
-## 快速开始
+## 安装
 
-### 安装
-
-#### 一键安装
+### 一键安装
 
 执行以下Bash命令即可一键安装：
 
@@ -18,7 +16,7 @@
 OS=$(uname -s | tr '[:upper:]' '[:lower:]'); ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/'); curl -LO "https://github.com/reorc/kamay-cli-skill/releases/latest/download/kamay-${OS}-${ARCH}" && sudo install -m 755 "kamay-${OS}-${ARCH}" /usr/local/bin/kamay && rm "kamay-${OS}-${ARCH}" && kamay version
 ```
 
-#### 手工安装
+### 手工安装
 
 从 [Releases](https://github.com/reorc/kamay-cli-skill/releases) 下载对应平台的二进制文件：
 
