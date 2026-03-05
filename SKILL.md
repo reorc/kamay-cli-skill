@@ -1,8 +1,6 @@
 ---
 name: kamay-cli
-description: |
-  Kamay CLI 使用指南 - 数据驱动的营销分析工具。
-  支持 Amazon、Google Trends、Meta Ads、TikTok 等平台的数据获取和分析。
+description: Kamay CLI 使用指南 - 数据驱动的营销分析工具。支持 Amazon、Google Trends、Meta Ads、TikTok 等平台的数据获取和分析。
 version: 0.1.0
 ---
 

@@ -17,12 +17,12 @@
 
 English:
 ```
-Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill/refs/heads/main/SKILL.md and setup kamay cli skill.
+Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill/refs/heads/main/references/INSTALL.md and setup kamay cli skill.
 ```
 
 中文版:
 ```
-根据文档说明 https://raw.githubusercontent.com/reorc/kamay-cli-skill/refs/heads/main/SKILL.md 帮我安装配置 Kamay Cli 技能.
+根据文档说明 https://raw.githubusercontent.com/reorc/kamay-cli-skill/refs/heads/main/references/INSTALL.md 帮我安装配置 Kamay Cli 技能.
 ```
 
 ## 适用场景
@@ -36,7 +36,7 @@ Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill
 | 需求 | 参考文档 |
 |------|----------|
 | 技能/Skill | [SKILL.md](SKILL.md) |
-| 安装 CLI | [references/INSTALL.md](references/INSTALL.md) |
+| 安装手册 | [references/INSTALL.md](references/INSTALL.md) |
 | Amazon 命令详情 | [references/amazon-commands.md](references/amazon-commands.md) |
 | Google Trends 命令 | [references/google-commands.md](references/google-commands.md) |
 | Meta 广告命令 | [references/meta-commands.md](references/meta-commands.md) |
