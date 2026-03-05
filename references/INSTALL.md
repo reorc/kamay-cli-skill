@@ -2,83 +2,36 @@
 
 ## 系统要求
 
-- **操作系统**: Linux, macOS, Windows
+- **操作系统**: Linux, macOS, Windows(WSL2)
 - **网络**: 需要连接 Kamay 后端服务
-- **认证**: 需要有效的 Kamay 账号
+- **认证**: 需要有效的 [Kamay](https://kamay.ai/) 账号
 
-## 安装步骤
+## 快速开始
 
-### 1. 下载二进制文件
+### 安装
 
-从 [GitHub Releases](https://github.com/kamay-ai/kamay-cli/releases) 下载对应平台的最新版本：
+#### 一键安装
 
-| 平台 | 文件名 |
-|------|--------|
-| Linux AMD64 | `kamay-linux-amd64` |
-| Linux ARM64 | `kamay-linux-arm64` |
-| macOS AMD64 | `kamay-darwin-amd64` |
-| macOS ARM64 (M1/M2) | `kamay-darwin-arm64` |
-| Windows AMD64 | `kamay-windows-amd64.exe` |
-
-### 2. 安装到系统路径
-
-#### Linux/macOS
+执行以下Bash命令即可一键安装：
 
 ```bash
-# 下载后赋予执行权限
-chmod +x kamay-linux-amd64
-
-# 移动到系统 PATH（推荐）
-sudo mv kamay-linux-amd64 /usr/local/bin/kamay
-
-# 或移动到用户目录
-mkdir -p ~/.local/bin
-mv kamay-linux-amd64 ~/.local/bin/kamay
+OS=$(uname -s | tr '[:upper:]' '[:lower:]'); ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/'); curl -LO "https://github.com/reorc/kamay-cli-skill/releases/latest/download/kamay-${OS}-${ARCH}" && sudo install -m 755 "kamay-${OS}-${ARCH}" /usr/local/bin/kamay && rm "kamay-${OS}-${ARCH}" && kamay version
 ```
 
-**添加到 PATH**（如使用 ~/.local/bin）：
+#### 手工安装
+
+从 [Releases](https://github.com/reorc/kamay-cli-skill/releases) 下载对应平台的二进制文件：
 
 ```bash
-# 添加到 ~/.bashrc 或 ~/.zshrc
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
+chmod +x ./kamay
+mv ./kamay /usr/local/bin/kamay
 ```
 
-#### Windows
-
-1. 将 `kamay-windows-amd64.exe` 重命名为 `kamay.exe`
-2. 将文件移动到 `C:\Windows\System32\` 或自定义目录
-3. 如使用自定义目录，将该目录添加到系统 PATH 环境变量
-
-### 3. 配置环境变量（可选）
-
-如果使用本地后端或自定义 API 端点：
-
-#### Linux/macOS
-
-```bash
-# 临时设置（当前终端）
-export KAMAY_API_URL=http://127.0.0.1:8101
-
-# 永久设置
-echo 'export KAMAY_API_URL=http://127.0.0.1:8101' >> ~/.bashrc
-source ~/.bashrc
-```
-
-#### Windows (PowerShell)
-
-```powershell
-# 临时设置
-$env:KAMAY_API_URL = "http://127.0.0.1:8101"
-
-# 永久设置
-[Environment]::SetEnvironmentVariable("KAMAY_API_URL", "http://127.0.0.1:8101", "User")
-```
-
-### 4. 验证安装
+### 验证
 
 ```bash
 kamay --help
+kamay version
 ```
 
 应显示类似输出：
@@ -107,7 +60,7 @@ Available Commands:
 kamay auth login --email your@email.com --password yourpassword
 ```
 
-登录成功后会自动保存 access token。
+登录成功后会自动保存 access token，配置信息存储在 `~/.config/kamay/config.json`。
 
 ### 验证登录状态
 
@@ -128,12 +81,6 @@ kamay auth logout
 ```
 
 ## 升级
-
-### 自动升级（未来版本支持）
-
-```bash
-kamay version update
-```
 
 ### 手动升级
 
@@ -159,11 +106,6 @@ rm ~/.local/bin/kamay
 rm -rf ~/.config/kamay
 ```
 
-### Windows
-
-1. 删除 `kamay.exe` 文件
-2. 删除 `%USERPROFILE%\.config\kamay` 目录（如存在）
-
 ## 常见问题
 
 ### Q: 提示 "command not found"
@@ -176,9 +118,8 @@ A: 检查：
 ### Q: 动态命令未加载（只有 auth/version）
 
 A: 检查：
-1. 是否设置了正确的 `KAMAY_API_URL`
-2. 网络是否能连接到后端服务
-3. 是否已完成登录
+1. 网络连接是否正常
+2. 后端服务是否可用
 
 ### Q: 登录失败
 
@@ -196,31 +137,8 @@ export KAMAY_LOG_LEVEL=debug
 kamay --help
 ```
 
-## Docker 安装（可选）
+### Q: Kamay团队联系方式
 
-```bash
-# 构建镜像
-docker build -t kamay-cli .
+邮箱: kamay@reorc.ai
 
-# 运行
-docker run -it --rm \
-  -e KAMAY_API_URL=http://host.docker.internal:8101 \
-  kamay-cli --help
-```
-
-## 源码安装（开发者）
-
-```bash
-# 克隆仓库
-git clone https://github.com/kamay-ai/kamay-cli.git
-cd kamay-cli
-
-# 安装依赖（Go 1.21+）
-go mod download
-
-# 构建
-go build -o kamay .
-
-# 安装
-mv kamay /usr/local/bin/
-```
+如果有使用方面的任何问题，都可以联系我们。
