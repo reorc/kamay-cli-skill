@@ -2,11 +2,9 @@
 
 [English](README.md) | [中文文档](README-CN.md)
 
-[Kamay](https://kamay.ai/) CLI + Skill usage guide for AI Agents and users, providing documentation for data analysis tools.
-
 ## Introduction
 
-[Kamay](https://kamay.ai/) CLI is a professional command-line tool for data-driven marketing, offering multi-platform data analysis capabilities:
+[Kamay](https://kamay.ai/) CLI and Skill is a professional command-line tool for data-driven marketing, offering multi-platform data analysis capabilities:
 
 - **Amazon** - E-commerce data analysis (products, categories, keywords, reviews)
 - **Google** - Google Trends search trend analysis

@@ -2,11 +2,9 @@
 
 [English](README.md) | [中文文档](README-CN.md)
 
-[Kamay](https://kamay.ai/) CLI + Skill 使用指南，为 AI Agent 和用户提供数据分析工具使用文档。
-
 ## 简介
 
-[Kamay](https://kamay.ai/) CLI 是面向数据驱动营销的专业命令行工具，提供多平台数据分析能力：
+[Kamay](https://kamay.ai/) CLI + Skill 是面向数据驱动营销的专业命令行工具，提供多平台数据分析能力：
 
 - **Amazon** - 电商数据分析（商品、品类、关键词、评价）
 - **Google** - Google Trends 搜索趋势分析
