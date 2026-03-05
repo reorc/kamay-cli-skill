@@ -13,7 +13,7 @@
 
 ## 安装使用
 
-将以下提示词发给你的 Agent（Claude code、Openclaw、Manus等）即可安装使用。
+将以下提示词发给你的 Agent（ClaudeCode、OpenClaw、Manus等）即可安装使用。
 
 English:
 ```
