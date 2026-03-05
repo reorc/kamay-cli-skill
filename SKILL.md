@@ -1,170 +1,170 @@
 ---
 name: kamay-cli
-description: Kamay CLI 使用指南 - 数据驱动的营销分析工具。支持 Amazon、Google Trends、Meta Ads、TikTok 等平台的数据获取和分析。
+description: Kamay CLI User Guide - Data-driven marketing analytics tool. Supports data acquisition and analysis for Amazon, Google Trends, Meta Ads, TikTok, and other platforms.
 version: 0.1.0
 ---
 
-# Kamay CLI 使用指南
+# Kamay CLI User Guide
 
-[Kamay](https://kamay.ai/) CLI 是面向数据驱动营销的专业命令行工具，帮助用户发现市场洞察、分析竞品、研究广告创意。
+[Kamay](https://kamay.ai/) CLI is a professional command-line tool for data-driven marketing, helping users discover market insights, analyze competitors, and research advertising creatives.
 
-## 核心模块
+## Core Modules
 
-| 模块 | 功能 |
-|------|------|
-| **amazon** | 电商数据分析：商品搜索、品类趋势、关键词研究、评价分析 |
-| **google** | Google Trends 搜索趋势分析 |
-| **meta** | Meta (Facebook/Instagram) 广告库分析 |
-| **tiktok** | TikTok 视频和广告分析 |
+| Module | Function |
+|--------|----------|
+| **amazon** | E-commerce data analysis: product search, category trends, keyword research, review analysis |
+| **google** | Google Trends search trend analysis |
+| **meta** | Meta (Facebook/Instagram) Ads Library analysis |
+| **tiktok** | TikTok video and ad analysis |
 
-## 快速开始
+## Quick Start
 
-### 前置检查
+### Prerequisites
 
 ```bash
 kamay --help
 kamay auth status
 ```
 
-如果系统未安装 kamay 程序，或者没有登录/登录过期，阅读并根据 [./references/INSTALL.md](./references/INSTALL.md) 文档完成安装配置。
+If the kamay program is not installed on your system, or if you are not logged in / your login has expired, read and follow the [./references/INSTALL.md](./references/INSTALL.md) document to complete installation and configuration.
 
-## Amazon 模块
+## Amazon Module
 
-### 商品相关
+### Product Commands
 
-| 命令 | 功能 |
-|------|------|
-| `search-products` | 按关键词搜索商品 |
-| `get-product` | 获取商品详情（ASIN） |
-| `get-product-reviews` | 获取商品评价 |
+| Command | Function |
+|---------|----------|
+| `search-products` | Search products by keyword |
+| `get-product` | Get product details (ASIN) |
+| `get-product-reviews` | Get product reviews |
 
-### 品类相关
+### Category Commands
 
-| 命令 | 功能 |
-|------|------|
-| `search-category` | 搜索品类，获取 Node ID |
-| `get-category-best-sellers` | 获取品类畅销榜 Top 100 |
-| `get-category-trend` | 获取品类趋势数据 |
+| Command | Function |
+|---------|----------|
+| `search-category` | Search categories, get Node ID |
+| `get-category-best-sellers` | Get category bestsellers Top 100 |
+| `get-category-trend` | Get category trend data |
 
-### 关键词相关
+### Keyword Commands
 
-| 命令 | 功能 |
-|------|------|
-| `get-keyword-overview` | 获取关键词概览 |
-| `get-keyword-trends` | 获取关键词搜索趋势 |
-| `expand-keywords` | 拓展相关关键词 |
-| `list-asin-keywords` | 获取 ASIN 关联关键词 |
-| `query-aba-keywords` | 查询 ABA 热词榜 |
+| Command | Function |
+|---------|----------|
+| `get-keyword-overview` | Get keyword overview |
+| `get-keyword-trends` | Get keyword search trends |
+| `expand-keywords` | Expand related keywords |
+| `list-asin-keywords` | Get ASIN related keywords |
+| `query-aba-keywords` | Query ABA trending keywords |
 
-## Google 模块
+## Google Module
 
-| 命令 | 功能 |
-|------|------|
-| `trends-get-interest-over-time` | 获取 Google Trends 搜索趋势 |
+| Command | Function |
+|---------|----------|
+| `trends-get-interest-over-time` | Get Google Trends search trends |
 
-## Meta 模块
+## Meta Module
 
-| 命令 | 功能 |
-|------|------|
-| `ads-search-ads` | 搜索 Meta 广告库 |
-| `ads-get-ad-detail` | 获取广告详情 |
+| Command | Function |
+|---------|----------|
+| `ads-search-ads` | Search Meta Ads Library |
+| `ads-get-ad-detail` | Get ad details |
 
-## TikTok 模块
+## TikTok Module
 
-| 命令 | 功能 |
-|------|------|
-| `search-videos` | 搜索视频 |
-| `search-ads` | 搜索 TikTok 广告库 |
-| `list-comments` | 获取视频评论 |
+| Command | Function |
+|---------|----------|
+| `search-videos` | Search videos |
+| `search-ads` | Search TikTok Ads Library |
+| `list-comments` | Get video comments |
 
-## 典型工作流
+## Typical Workflows
 
-### 竞品分析
+### Competitor Analysis
 
 ```bash
-# 搜索商品获取 ASIN
+# Search products to get ASIN
 kamay amazon search-products --q "wireless earbuds" --market US
 
-# 获取商品详情
+# Get product details
 kamay amazon get-product --asin B09V3KXJPB --market US
 
-# 获取评价
+# Get reviews
 kamay amazon get-product-reviews --asin B09V3KXJPB --market US --start_date 2024-01-01
 
-# 获取关键词
+# Get keywords
 kamay amazon list-asin-keywords --asin B09V3KXJPB --market US
 ```
 
-### 品类趋势分析
+### Category Trend Analysis
 
 ```bash
-# 搜索品类获取 Node ID
+# Search category to get Node ID
 kamay amazon search-category --name "Cell Phones" --market US
 
-# 获取畅销榜
+# Get bestsellers
 kamay amazon get-category-best-sellers --node_id 3743561 --market US
 
-# 获取趋势（多指标）
+# Get trends (multiple metrics)
 kamay amazon get-category-trend --node_id 3743561 --trend_types "sales_volume,avg_price,brand_count" --market US
 ```
 
-### 关键词研究
+### Keyword Research
 
 ```bash
-# 关键词概览
+# Keyword overview
 kamay amazon get-keyword-overview --keyword "wireless earbuds" --market US
 
-# 拓展关键词
+# Expand keywords
 kamay amazon expand-keywords --keyword "headphones" --market US
 
-# 趋势对比
+# Trend comparison
 kamay amazon get-keyword-trends --keywords "wireless earbuds,airpods" --market US
 
-# ABA 热词榜
+# ABA trending keywords
 kamay amazon query-aba-keywords --market US --node_ids 12557637011
 ```
 
-### 广告创意分析
+### Ad Creative Analysis
 
 ```bash
-# Meta 广告
+# Meta ads
 kamay meta ads-search-ads --q "nike shoes" --country US
 
-# TikTok 广告
+# TikTok ads
 kamay tiktok search-ads --q "fitness app" --region DE
 
-# TikTok 热门视频
+# TikTok popular videos
 kamay tiktok search-videos --keyword "product review"
 ```
 
-### Google Trends 验证
+### Google Trends Validation
 
 ```bash
 kamay google trends-get-interest-over-time --q "wireless earbuds" --geo US
 ```
 
-## 常用参数
+## Common Parameters
 
-### Amazon 市场代码
+### Amazon Marketplace Codes
 
 US, UK, DE, JP, CA, FR, ES, IT
 
-### 日期格式
+### Date Format
 
-YYYY-MM-DD，如 `2024-01-01`
+YYYY-MM-DD, e.g., `2024-01-01`
 
-## 参考文档
+## Reference Documents
 
-- [安装指南 ./references/INSTALL.md](./references/INSTALL.md)
-- [Amazon 模块 ./references/amazon-commands.md](./references/amazon-commands.md)
-- [Google 模块 ./references/google-commands.md](./references/google-commands.md)
-- [Meta 模块 ./references/meta-commands.md](./references/meta-commands.md)
-- [TikTok 模块 ./references/tiktok-commands.md](./references/tiktok-commands.md)
-- [工作流示例 ./references/workflow-examples.md](./references/workflow-examples.md)
+- [Installation Guide ./references/INSTALL.md](./references/INSTALL.md)
+- [Amazon Module ./references/amazon-commands.md](./references/amazon-commands.md)
+- [Google Module ./references/google-commands.md](./references/google-commands.md)
+- [Meta Module ./references/meta-commands.md](./references/meta-commands.md)
+- [TikTok Module ./references/tiktok-commands.md](./references/tiktok-commands.md)
+- [Workflow Examples ./references/workflow-examples.md](./references/workflow-examples.md)
 
-## 故障排除
+## Troubleshooting
 
-### 认证问题
+### Authentication Issues
 
 ```bash
 kamay auth status
@@ -172,7 +172,7 @@ kamay auth refresh
 kamay auth login --email <email> --password <password>
 ```
 
-## 获取帮助
+## Getting Help
 
 ```bash
 kamay --help

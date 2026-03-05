@@ -26,9 +26,9 @@
 | 需求 | 参考文档 |
 |------|----------|
 | 技能/Skill | [SKILL.md](SKILL.md) |
-| 安装手册 | [INSTALL.md](references-cn/INSTALL.md) |
-| Amazon 命令详情 | [amazon-commands.md](references-cn/amazon-commands.md) |
-| Google Trends 命令 | [google-commands.md](references-cn/google-commands.md) |
-| Meta 广告命令 | [meta-commands.md](references-cn/meta-commands.md) |
-| TikTok 命令 | [tiktok-commands.md](references-cn/tiktok-commands.md) |
-| 典型工作流 | [workflow-examples.md](references-cn/workflow-examples.md) |
+| 安装手册 | [INSTALL.md](./references-cn/INSTALL.md) |
+| Amazon 命令详情 | [amazon-commands.md](./references-cn/amazon-commands.md) |
+| Google Trends 命令 | [google-commands.md](./references-cn/google-commands.md) |
+| Meta 广告命令 | [meta-commands.md](./references-cn/meta-commands.md) |
+| TikTok 命令 | [tiktok-commands.md](./references-cn/tiktok-commands.md) |
+| 典型工作流 | [workflow-examples.md](./references-cn/workflow-examples.md) |

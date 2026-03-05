@@ -26,9 +26,9 @@ Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill
 | Requirement | Reference Document |
 |-------------|-------------------|
 | Skill Definition | [SKILL.md](SKILL.md) |
-| Installation Guide | [references/INSTALL.md](references/INSTALL.md) |
-| Amazon Commands | [references/amazon-commands.md](references/amazon-commands.md) |
-| Google Trends Commands | [references/google-commands.md](references/google-commands.md) |
-| Meta Ads Commands | [references/meta-commands.md](references/meta-commands.md) |
-| TikTok Commands | [references/tiktok-commands.md](references/tiktok-commands.md) |
-| Workflow Examples | [references/workflow-examples.md](references/workflow-examples.md) |
+| Installation Guide | [INSTALL.md](./references/INSTALL.md) |
+| Amazon Commands | [amazon-commands.md](./references/amazon-commands.md) |
+| Google Trends Commands | [google-commands.md](./references/google-commands.md) |
+| Meta Ads Commands | [meta-commands.md](./references/meta-commands.md) |
+| TikTok Commands | [tiktok-commands.md](./references/tiktok-commands.md) |
+| Workflow Examples | [workflow-examples.md](./references/workflow-examples.md) |
