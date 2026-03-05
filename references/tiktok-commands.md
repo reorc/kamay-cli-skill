@@ -1,45 +1,45 @@
-# TikTok 模块命令详解
+# TikTok Module Commands Reference
 
-## 命令总览
+## Command Overview
 
-| 命令 | 功能 |
-|------|------|
-| `search-videos` | 搜索 TikTok 视频 |
-| `search-ads` | 搜索 TikTok 广告库 |
-| `list-comments` | 获取视频评论 |
+| Command | Function |
+|---------|----------|
+| `search-videos` | Search TikTok videos |
+| `search-ads` | Search TikTok Ad Library |
+| `list-comments` | Get video comments |
 
 ---
 
 ## search-videos
 
-搜索 TikTok 视频，获取热门内容数据。
+Search TikTok videos to get popular content data.
 
 ```bash
 kamay tiktok search-videos --keyword "dance challenge"
 ```
 
-### 参数
+### Parameters
 
-| 参数 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| `keyword` | string | 是 | 搜索关键词 |
-| `sort_by` | int | 否 | 排序方式：0-默认, 1-点赞数, 2-发布日期 |
-| `publish_time` | int | 否 | 发布时间：0-全部, 1-24h, 7-7天, 30-30天 |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `keyword` | string | Yes | Search keyword |
+| `sort_by` | int | No | Sort: 0-default, 1-likes, 2-publish date |
+| `publish_time` | int | No | Publish time: 0-all, 1-24h, 7-7days, 30-30days |
 
-### 返回数据
+### Returns
 
-- 视频元数据
-- 点赞/评论/分享数
-- 播放量
-- 作者信息
+- Video metadata
+- Likes/comments/shares count
+- View count
+- Creator info
 
-### 示例
+### Examples
 
 ```bash
-# 搜索最近7天的热门产品评测视频
+# Search for popular product review videos from the last 7 days
 kamay tiktok search-videos --keyword "product review" --sort_by 1 --publish_time 7
 
-# 搜索舞蹈挑战视频
+# Search for dance challenge videos
 kamay tiktok search-videos --keyword "dance challenge" --sort_by 1
 ```
 
@@ -47,97 +47,97 @@ kamay tiktok search-videos --keyword "dance challenge" --sort_by 1
 
 ## search-ads
 
-搜索 TikTok 广告库。
+Search TikTok Ad Library.
 
 ```bash
 kamay tiktok search-ads --q "fitness app" --region DE
 ```
 
-### 参数
+### Parameters
 
-| 参数 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| `q` | string | 是 | 搜索关键词 |
-| `region` | string | 是 | 地区代码 |
-| `sort_by` | string | 否 | 排序方式 |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `q` | string | Yes | Search keyword |
+| `region` | string | Yes | Region code |
+| `sort_by` | string | No | Sort method |
 
-### 排序选项
+### Sort Options
 
-| 值 | 说明 |
-|-----|------|
-| `last_shown_date_newest_to_oldest` | 最近展示时间（新→旧） |
-| `first_shown_date_newest_to_oldest` | 首次展示时间（新→旧） |
+| Value | Description |
+|-------|-------------|
+| `last_shown_date_newest_to_oldest` | Last shown date (new→old) |
+| `first_shown_date_newest_to_oldest` | First shown date (new→old) |
 
-### 返回数据
+### Returns
 
-- 广告商信息
-- 视频链接
-- 预估受众
-- 投放花费估算
+- Advertiser information
+- Video links
+- Estimated audience
+- Spend estimate
 
-### 示例
+### Examples
 
 ```bash
-# 搜索德国地区的健身类广告
+# Search for fitness ads in Germany
 kamay tiktok search-ads --q "fitness" --region DE --sort_by last_shown_date_newest_to_oldest
 
-# 搜索美国地区的电商广告
+# Search for e-commerce ads in the US
 kamay tiktok search-ads --q "shop now" --region US
 ```
 
-### 地区代码
+### Region Codes
 
-| 代码 | 地区 |
-|------|------|
-| US | 美国 |
-| UK | 英国 |
-| DE | 德国 |
-| FR | 法国 |
-| IT | 意大利 |
-| ES | 西班牙 |
-| CA | 加拿大 |
-| AU | 澳大利亚 |
-| JP | 日本 |
+| Code | Region |
+|------|--------|
+| US | United States |
+| UK | United Kingdom |
+| DE | Germany |
+| FR | France |
+| IT | Italy |
+| ES | Spain |
+| CA | Canada |
+| AU | Australia |
+| JP | Japan |
 
 ---
 
 ## list-comments
 
-获取 TikTok 视频评论。
+Get TikTok video comments.
 
 ```bash
 kamay tiktok list-comments --video_id "7123456789012345678"
 ```
 
-### 参数
+### Parameters
 
-| 参数 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| `video_id` | string | 是 | 视频 ID 或完整 URL |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `video_id` | string | Yes | Video ID or full URL |
 
-### 支持的视频 ID 格式
+### Supported Video ID Formats
 
 ```bash
-# 直接使用视频 ID
+# Use video ID directly
 kamay tiktok list-comments --video_id "7123456789012345678"
 
-# 使用完整视频 URL
+# Use full video URL
 kamay tiktok list-comments --video_id "https://www.tiktok.com/@user/video/7123456789012345678"
 ```
 
-### 返回数据
+### Returns
 
-- 评论内容
-- 评论者信息
-- 点赞数
-- 评论时间
+- Comment content
+- Commenter info
+- Like count
+- Comment time
 
-### 使用流程
+### Workflow
 
 ```bash
-# 1. 先搜索视频
+# 1. First search for videos
 kamay tiktok search-videos --keyword "product review"
 
-# 2. 使用返回的 video_id 获取评论
+# 2. Use the returned video_id to get comments
 kamay tiktok list-comments --video_id "<video_id>"
 ```

@@ -1,35 +1,35 @@
-# Kamay CLI Skill 安装指南
+# Kamay CLI Skill Installation Guide
 
-## 安装 Skill
+## Installing the Skill
 
-将本仓库安装到 Agent 的 skills 目录，可获得完整的使用指南和参考文档。
+Install this repository into your Agent's skills directory to get complete usage guides and reference documentation.
 
-### 方式一：Git Clone（推荐，方便更新升级）
+### Method 1: Git Clone (Recommended, easy to update)
 
 ```bash
-# 对于 Claude Code
+# For Claude Code
 git clone https://github.com/reorc/kamay-cli-skill.git ~/.claude/skills/kamay-cli
 
-# 对于 OpenCode、OpenClaw 等通用 Agent
+# For OpenCode, OpenClaw, and other general Agents
 git clone https://github.com/reorc/kamay-cli-skill.git ~/.agents/skills/kamay-cli
 ```
 
-**更新 Skill**:
+**Updating the Skill**:
 ```bash
-cd ~/.claude/skills/kamay-cli  # 或对应 agent 的目录
+cd ~/.claude/skills/kamay-cli  # or the corresponding agent directory
 git pull
 ```
 
-### 方式二：下载 ZIP 解压
+### Method 2: Download and Extract ZIP
 
 ```bash
-# 下载并解压到对应目录
-# 对于 Claude Code
+# Download and extract to the corresponding directory
+# For Claude Code
 curl -L https://github.com/reorc/kamay-cli-skill/archive/refs/heads/main.zip -o /tmp/kamay-cli.zip
 unzip /tmp/kamay-cli.zip -d ~/.claude/skills/
 mv ~/.claude/skills/kamay-cli-skill-main ~/.claude/skills/kamay-cli
 
-# 对于 OpenCode、OpenClaw 等通用 Agent
+# For OpenCode, OpenClaw, and other general Agents
 curl -L https://github.com/reorc/kamay-cli-skill/archive/refs/heads/main.zip -o /tmp/kamay-cli.zip
 unzip /tmp/kamay-cli.zip -d ~/.agents/skills/
 mv ~/.agents/skills/kamay-cli-skill-main ~/.agents/skills/kamay-cli
@@ -37,41 +37,41 @@ mv ~/.agents/skills/kamay-cli-skill-main ~/.agents/skills/kamay-cli
 
 ---
 
-## 安装 CLI
+## Installing the CLI
 
-### 系统要求
+### System Requirements
 
-- **操作系统**: Linux, macOS, Windows(WSL2)
-- **网络**: 需要连接 Kamay 后端服务
-- **认证**: 需要有效的 [Kamay](https://kamay.ai/) 账号
+- **Operating System**: Linux, macOS, Windows (WSL2)
+- **Network**: Requires connection to Kamay backend services
+- **Authentication**: Requires a valid [Kamay](https://kamay.ai/) account
 
-### 安装方法
+### Installation Methods
 
-#### 一键安装
+#### One-Click Install
 
-执行以下Bash命令即可一键安装：
+Run the following Bash command for one-click installation:
 
 ```bash
 OS=$(uname -s | tr '[:upper:]' '[:lower:]'); ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/'); curl -LO "https://github.com/reorc/kamay-cli-skill/releases/latest/download/kamay-${OS}-${ARCH}" && sudo install -m 755 "kamay-${OS}-${ARCH}" /usr/local/bin/kamay && rm "kamay-${OS}-${ARCH}" && kamay version
 ```
 
-#### 手工安装
+#### Manual Installation
 
-从 [Releases](https://github.com/reorc/kamay-cli-skill/releases) 下载对应平台的二进制文件：
+Download the binary for your platform from [Releases](https://github.com/reorc/kamay-cli-skill/releases):
 
 ```bash
 chmod +x ./kamay
 mv ./kamay /usr/local/bin/kamay
 ```
 
-### 验证
+### Verification
 
 ```bash
 kamay --help
 kamay version
 ```
 
-应显示类似输出：
+You should see output similar to:
 
 ```
 Kamay CLI is your data-driven marketing tools.
@@ -89,105 +89,105 @@ Available Commands:
   version     Print the version number of Kamay CLI
 ```
 
-## 认证
+## Authentication
 
-### 首次登录
+### First Login
 
-如果没有账号，请提示用户访问 https://kamay.ai/ 获取账号。
+If you don't have an account, please prompt the user to visit https://kamay.ai/ to get an account.
 
 ```bash
 kamay auth login --email your@email.com --password yourpassword
 ```
 
-登录成功后会自动保存 access token，配置信息存储在 `~/.config/kamay/config.json`。
+After successful login, the access token will be saved automatically. Configuration is stored in `~/.config/kamay/config.json`.
 
-### 验证登录状态
+### Verify Login Status
 
 ```bash
 kamay auth status
 ```
 
-### 刷新 Token
+### Refresh Token
 
 ```bash
 kamay auth refresh
 ```
 
-### 退出登录
+### Logout
 
 ```bash
 kamay auth logout
 ```
 
-## 升级
+## Upgrade
 
-### 手动升级
+### Manual Upgrade
 
-1. 下载新版本二进制文件
-2. 替换旧版本文件
-3. 验证版本
+1. Download the new version binary
+2. Replace the old version file
+3. Verify the version
 
 ```bash
 kamay version
 ```
 
-## 卸载
+## Uninstallation
 
-### 卸载 Skill
+### Uninstall Skill
 
 ```bash
-# 对于 Claude Code
+# For Claude Code
 rm -rf ~/.claude/skills/kamay-cli
 
-# 对于 OpenCode、OpenClaw 等通用 Agent
+# For OpenCode, OpenClaw, and other general Agents
 rm -rf ~/.agents/skills/kamay-cli
 ```
 
-### 卸载 CLI
+### Uninstall CLI
 
 ```bash
-# 删除二进制文件
+# Delete binary file
 sudo rm /usr/local/bin/kamay
-# 或
+# or
 rm ~/.local/bin/kamay
 
-# 删除配置（可选）
+# Delete configuration (optional)
 rm -rf ~/.config/kamay
 ```
 
-## 常见问题
+## FAQ
 
-### Q: 提示 "command not found"
+### Q: Getting "command not found"
 
-A: 检查：
-1. 文件是否有执行权限（Linux/macOS: `chmod +x`）
-2. 文件是否在 PATH 中
-3. 终端是否已重新加载配置（`source ~/.bashrc`）
+A: Check:
+1. Does the file have execute permission (Linux/macOS: `chmod +x`)
+2. Is the file in your PATH
+3. Has the terminal reloaded configuration (`source ~/.bashrc`)
 
-### Q: 动态命令未加载（只有 auth/version）
+### Q: Dynamic commands not loaded (only auth/version available)
 
-A: 检查：
-1. 网络连接是否正常
-2. 后端服务是否可用
+A: Check:
+1. Is network connection normal
+2. Is the backend service available
 
-### Q: 登录失败
+### Q: Login failed
 
-A: 检查：
-1. 邮箱和密码是否正确
-2. 网络连接是否正常
-3. 后端服务是否可用
+A: Check:
+1. Is the email and password correct
+2. Is network connection normal
+3. Is the backend service available
 
-### Q: 如何查看详细日志
+### Q: How to view detailed logs
 
-A: 设置日志级别：
+A: Set log level:
 
 ```bash
 export KAMAY_LOG_LEVEL=debug
 kamay --help
 ```
 
-### Q: Kamay团队联系方式
+### Q: Kamay Team Contact
 
-邮箱: kamay@reorc.ai
+Email: kamay@reorc.ai
 
-如果有使用方面的任何问题，都可以联系我们。
+If you have any questions about usage, feel free to contact us.

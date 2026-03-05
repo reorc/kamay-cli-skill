@@ -1,60 +1,60 @@
-# Google 模块命令详解
+# Google Module Commands Reference
 
-## 命令总览
+## Command Overview
 
-| 命令 | 功能 |
-|------|------|
-| `trends-get-interest-over-time` | 获取 Google Trends 搜索趋势 |
+| Command | Function |
+|---------|----------|
+| `trends-get-interest-over-time` | Get Google Trends search trends |
 
 ---
 
 ## trends-get-interest-over-time
 
-获取 Google Trends 搜索趋势数据，用于验证市场热度和季节性。
+Get Google Trends search trend data for validating market interest and seasonality.
 
 ```bash
 kamay google trends-get-interest-over-time --q "artificial intelligence" --geo US
 ```
 
-### 参数
+### Parameters
 
-| 参数 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| `q` | string | 是 | 搜索查询词 |
-| `geo` | string | 否 | 地区代码，默认全球 |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `q` | string | Yes | Search query |
+| `geo` | string | No | Region code, default is worldwide |
 
-### 返回数据
+### Returns
 
-- 时间序列趋势数据
-- 地区分布
-- 相关主题和查询
+- Time-series trend data
+- Geographic distribution
+- Related topics and queries
 
-### 典型用途
+### Typical Use Cases
 
-1. **验证产品市场趋势**
+1. **Validate product market trends**
    ```bash
    kamay google trends-get-interest-over-time --q "wireless earbuds" --geo US
    ```
 
-2. **对比多个关键词**
+2. **Compare multiple keywords**
    ```bash
-   # 需要在同一会话中多次调用对比
+   # Run multiple calls in the same session to compare
    kamay google trends-get-interest-over-time --q "airpods" --geo US
    kamay google trends-get-interest-over-time --q "galaxy buds" --geo US
    ```
 
-3. **发现季节性规律**
+3. **Discover seasonal patterns**
    ```bash
    kamay google trends-get-interest-over-time --q "christmas decorations" --geo US
    ```
 
-### 地区代码示例
+### Region Code Examples
 
-| 代码 | 地区 |
-|------|------|
-| US | 美国 |
-| CN | 中国 |
-| GB | 英国 |
-| DE | 德国 |
-| JP | 日本 |
-| （空） | 全球 |
+| Code | Region |
+|------|--------|
+| US | United States |
+| CN | China |
+| GB | United Kingdom |
+| DE | Germany |
+| JP | Japan |
+| (empty) | Worldwide |

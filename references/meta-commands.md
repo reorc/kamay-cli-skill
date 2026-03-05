@@ -1,44 +1,44 @@
-# Meta 模块命令详解
+# Meta Module Commands Reference
 
-## 命令总览
+## Command Overview
 
-| 命令 | 功能 |
-|------|------|
-| `ads-search-ads` | 搜索 Meta (Facebook/Instagram) 广告库 |
-| `ads-get-ad-detail` | 获取广告详情 |
+| Command | Function |
+|---------|----------|
+| `ads-search-ads` | Search Meta (Facebook/Instagram) Ad Library |
+| `ads-get-ad-detail` | Get ad details |
 
 ---
 
 ## ads-search-ads
 
-搜索 Meta Ad Library，获取 Facebook/Instagram 广告创意。
+Search Meta Ad Library to get Facebook/Instagram ad creatives.
 
 ```bash
 kamay meta ads-search-ads --q "nike shoes" --country US
 ```
 
-### 参数
+### Parameters
 
-| 参数 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| `q` | string | 是 | 搜索关键词 |
-| `country` | string | 是 | 国家代码 |
-| `active_status` | string | 否 | active/inactive/all |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `q` | string | Yes | Search keyword |
+| `country` | string | Yes | Country code |
+| `active_status` | string | No | active/inactive/all |
 
-### 返回数据
+### Returns
 
-- 广告创意内容
-- 广告主信息
-- 投放时间
-- 互动数据
+- Ad creative content
+- Advertiser information
+- Running time
+- Engagement data
 
-### 示例
+### Examples
 
 ```bash
-# 搜索 Nike 在美国的活跃广告
+# Search for active Nike ads in the US
 kamay meta ads-search-ads --q "nike" --country US --active_status active
 
-# 搜索特定产品类别的广告
+# Search for ads in a specific product category
 kamay meta ads-search-ads --q "skincare" --country UK
 ```
 
@@ -46,42 +46,42 @@ kamay meta ads-search-ads --q "skincare" --country UK
 
 ## ads-get-ad-detail
 
-获取特定广告的详细信息。
+Get detailed information for a specific ad.
 
 ```bash
 kamay meta ads-get-ad-detail --ad_id "123456789"
 ```
 
-### 参数
+### Parameters
 
-| 参数 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| `ad_id` | string | 是 | 广告 ID |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `ad_id` | string | Yes | Ad ID |
 
-### 返回数据
+### Returns
 
-- 完整广告数据
-- 视频 URL
-- 头像/图片资源
+- Complete ad data
+- Video URL
+- Avatar/image assets
 
-### 使用流程
+### Workflow
 
 ```bash
-# 1. 先搜索广告获取 ad_id
+# 1. First search ads to get ad_id
 kamay meta ads-search-ads --q "nike" --country US
 
-# 2. 使用 ad_id 获取详情
+# 2. Use ad_id to get details
 kamay meta ads-get-ad-detail --ad_id "<ad_id_from_search>"
 ```
 
-### 国家代码
+### Country Codes
 
-| 代码 | 国家 |
-|------|------|
-| US | 美国 |
-| UK | 英国 |
-| DE | 德国 |
-| FR | 法国 |
-| CA | 加拿大 |
-| AU | 澳大利亚 |
-| JP | 日本 |
+| Code | Country |
+|------|---------|
+| US | United States |
+| UK | United Kingdom |
+| DE | Germany |
+| FR | France |
+| CA | Canada |
+| AU | Australia |
+| JP | Japan |

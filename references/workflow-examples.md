@@ -1,259 +1,259 @@
-# Kamay CLI 工作流示例
+# Kamay CLI Workflow Examples
 
-本文档提供常见的数据分析工作流。
+This document provides common data analysis workflows.
 
 ---
 
-## 工作流 1：竞品深度分析
+## Workflow 1: Competitor Deep Analysis
 
-**目标**：全面了解竞争对手产品的市场表现和用户反馈
+**Goal**: Comprehensive understanding of competitor product market performance and user feedback
 
-### 步骤
+### Steps
 
 ```bash
-# 1. 搜索竞品，获取候选 ASIN 列表
+# 1. Search for competitors to get candidate ASIN list
 kamay amazon search-products \
   --q "wireless earbuds bluetooth" \
   --market US
 
-# 2. 获取目标竞品详细信息
+# 2. Get target competitor detailed information
 kamay amazon get-product \
   --asin B09V3KXJPB \
   --market US
 
-# 3. 分析竞品评价（最近6个月）
+# 3. Analyze competitor reviews (last 6 months)
 kamay amazon get-product-reviews \
   --asin B09V3KXJPB \
   --market US \
   --start_date 2024-06-01
 
-# 4. 查看竞品关键词布局
+# 4. View competitor keyword layout
 kamay amazon list-asin-keywords \
   --asin B09V3KXJPB \
   --market US
 ```
 
-### 分析维度
+### Analysis Dimensions
 
-| 数据 | 洞察 |
-|------|------|
-| 商品详情 | 定价策略、产品定位、功能卖点 |
-| 评价分析 | 用户满意度、痛点、改进建议 |
-| 关键词 | SEO 策略、广告投放方向 |
+| Data | Insights |
+|------|----------|
+| Product Details | Pricing strategy, product positioning, feature selling points |
+| Review Analysis | User satisfaction, pain points, improvement suggestions |
+| Keywords | SEO strategy, ad placement direction |
 
 ---
 
-## 工作流 2：品类市场趋势分析
+## Workflow 2: Category Market Trend Analysis
 
-**目标**：评估品类规模、增长趋势和竞争格局
+**Goal**: Evaluate category size, growth trends, and competitive landscape
 
-### 步骤
+### Steps
 
 ```bash
-# 1. 搜索目标品类
+# 1. Search for target category
 kamay amazon search-category \
   --name "Bluetooth Headphones" \
   --market US
 
-# 2. 获取品类畅销榜（Top 100）
+# 2. Get category best sellers (Top 100)
 kamay amazon get-category-best-sellers \
   --node_id 3743561 \
   --market US
 
-# 3. 获取品类多维度趋势（批量查询）
+# 3. Get category multi-dimensional trends (batch query)
 kamay amazon get-category-trend \
   --node_id 3743561 \
   --trend_types "sales_volume,avg_price,brand_count,seller_count" \
   --market US
 ```
 
-### 分析维度
+### Analysis Dimensions
 
-| 指标 | 意义 |
-|------|------|
-| sales_volume | 品类整体需求量 |
-| avg_price | 市场价格带分布 |
-| brand_count | 品牌竞争度 |
-| seller_count | 卖家竞争激烈程度 |
+| Metric | Meaning |
+|--------|---------|
+| sales_volume | Overall category demand |
+| avg_price | Market price range distribution |
+| brand_count | Brand competition level |
+| seller_count | Seller competition intensity |
 
 ---
 
-## 工作流 3：关键词研究与拓展
+## Workflow 3: Keyword Research and Expansion
 
-**目标**：发现高价值关键词，优化 SEO 和广告策略
+**Goal**: Discover high-value keywords, optimize SEO and ad strategy
 
-### 步骤
+### Steps
 
 ```bash
-# 1. 获取种子关键词概览
+# 1. Get seed keyword overview
 kamay amazon get-keyword-overview \
   --keyword "wireless earbuds" \
   --market US
 
-# 2. 拓展相关关键词
+# 2. Expand related keywords
 kamay amazon expand-keywords \
   --keyword "wireless earbuds" \
   --market US
 
-# 3. 对比多个关键词趋势
+# 3. Compare multiple keyword trends
 kamay amazon get-keyword-trends \
   --keywords "wireless earbuds,bluetooth headphones,airpods" \
   --market US
 
-# 4. 查看 ABA 热词榜（发现机会词）
+# 4. View ABA trending keywords (discover opportunity words)
 kamay amazon query-aba-keywords \
   --market US
 ```
 
-### 分析维度
+### Analysis Dimensions
 
-| 数据 | 洞察 |
-|------|------|
-| 搜索量 | 需求规模 |
-| 竞争度 | 进入难度 |
-| CPC | 广告成本 |
-| 趋势 | 季节性/增长性 |
+| Data | Insights |
+|------|----------|
+| Search Volume | Demand scale |
+| Competition | Entry difficulty |
+| CPC | Ad cost |
+| Trends | Seasonality/Growth |
 
 ---
 
-## 工作流 4：广告创意竞品分析
+## Workflow 4: Ad Creative Competitor Analysis
 
-**目标**：研究竞争对手的广告策略和创意方向
+**Goal**: Research competitor ad strategies and creative directions
 
-### 步骤
+### Steps
 
 ```bash
-# 1. Meta (Facebook/Instagram) 广告分析
+# 1. Meta (Facebook/Instagram) ad analysis
 kamay meta ads-search-ads \
   --q "nike shoes" \
   --country US \
   --active_status active
 
-# 2. 获取特定广告详情
+# 2. Get specific ad details
 kamay meta ads-get-ad-detail \
   --ad_id "<ad_id_from_search>"
 
-# 3. TikTok 广告分析
+# 3. TikTok ad analysis
 kamay tiktok search-ads \
   --q "fitness app" \
   --region DE
 
-# 4. TikTok 热门视频研究
+# 4. TikTok popular video research
 kamay tiktok search-videos \
   --keyword "product review" \
   --sort_by 1 \
   --publish_time 30
 ```
 
-### 分析维度
+### Analysis Dimensions
 
-| 平台 | 关注点 |
-|------|--------|
-| Meta | 文案风格、CTA 设计、受众定位 |
-| TikTok | 视频创意、音乐选择、互动方式 |
+| Platform | Focus Points |
+|----------|--------------|
+| Meta | Copy style, CTA design, audience targeting |
+| TikTok | Video creativity, music selection, interaction methods |
 
 ---
 
-## 工作流 5：Google Trends 市场验证
+## Workflow 5: Google Trends Market Validation
 
-**目标**：验证产品/关键词的市场热度和季节性
+**Goal**: Validate product/keyword market interest and seasonality
 
-### 步骤
+### Steps
 
 ```bash
-# 获取搜索趋势（支持多词对比）
+# Get search trends (supports multi-keyword comparison)
 kamay google trends-get-interest-over-time \
   --q "wireless earbuds" \
   --geo US
 ```
 
-### 分析维度
+### Analysis Dimensions
 
-- 长期趋势（上升/下降/稳定）
-- 季节性波动
-- 区域分布
-- 相关主题/查询
+- Long-term trends (rising/falling/stable)
+- Seasonal fluctuations
+- Regional distribution
+- Related topics/queries
 
 ---
 
-## 工作流 6：新品市场调研（综合）
+## Workflow 6: New Product Market Research (Comprehensive)
 
-**目标**：评估新品进入市场的可行性
+**Goal**: Evaluate feasibility of entering market with new product
 
-### 步骤
+### Steps
 
 ```bash
-# 1. 品类趋势分析
+# 1. Category trend analysis
 kamay amazon search-category --name "Target Category" --market US
 kamay amazon get-category-trend \
   --node_id <node_id> \
   --trend_types "sales_volume,avg_price,brand_count" \
   --market US
 
-# 2. 竞品分析（Top 5）
+# 2. Competitor analysis (Top 5)
 kamay amazon get-category-best-sellers --node_id <node_id> --market US
-# 对每个竞品执行：
+# For each competitor execute:
 kamay amazon get-product --asin <asin> --market US
 kamay amazon get-product-reviews --asin <asin> --market US
 
-# 3. 关键词机会
+# 3. Keyword opportunities
 kamay amazon get-keyword-overview --keyword "main keyword" --market US
 kamay amazon expand-keywords --keyword "main keyword" --market US
 
-# 4. 广告环境
+# 4. Ad environment
 kamay meta ads-search-ads --q "main keyword" --country US
 kamay tiktok search-ads --q "main keyword" --region US
 
-# 5. Google Trends 验证
+# 5. Google Trends validation
 kamay google trends-get-interest-over-time --q "main keyword" --geo US
 ```
 
-### 决策框架
+### Decision Framework
 
-| 维度 | 评估指标 | 决策依据 |
-|------|----------|----------|
-| 市场规模 | 销量趋势 | > 上升/稳定 |
-| 竞争度 | 品牌/卖家数 | < 适中 |
-| 价格带 | 均价/分布 | 有差异化空间 |
-| 用户需求 | 评价痛点 | 有未满足需求 |
-| 营销成本 | CPC/竞争度 | 可承受范围 |
+| Dimension | Evaluation Metrics | Decision Criteria |
+|-----------|-------------------|-------------------|
+| Market Size | Sales trend | > Rising/Stable |
+| Competition | Brand/seller count | Lower is better |
+| Price Range | Average price/distribution | Differentiation space available |
+| User Demand | Review pain points | Unmet needs exist |
+| Marketing Cost | CPC/Competition | Within budget |
 
 ---
 
-## 工作流 7：VOC（用户声音）分析
+## Workflow 7: VOC (Voice of Customer) Analysis
 
-**目标**：从用户评价中提取产品改进方向
+**Goal**: Extract product improvement directions from user reviews
 
-### 步骤
+### Steps
 
 ```bash
-# 1. 获取目标商品评价
+# 1. Get target product reviews
 kamay amazon get-product-reviews \
   --asin B09V3KXJPB \
   --market US \
   --start_date 2024-01-01
 
-# 2. 获取竞品评价对比
+# 2. Get competitor reviews for comparison
 kamay amazon get-product-reviews \
   --asin <competitor_asin> \
   --market US \
   --start_date 2024-01-01
 ```
 
-### 分析维度
+### Analysis Dimensions
 
-| 类型 | 分析内容 |
-|------|----------|
-| 正面评价 | praised features, 购买驱动因素 |
-| 负面评价 | pain points, 产品缺陷 |
-| 星级分布 | 满意度概览 |
-| 时间趋势 | 质量变化趋势 |
+| Type | Analysis Content |
+|------|------------------|
+| Positive Reviews | Praised features, purchase drivers |
+| Negative Reviews | Pain points, product defects |
+| Rating Distribution | Satisfaction overview |
+| Time Trends | Quality change trends |
 
 ---
 
-## 批量操作技巧
+## Batch Operation Tips
 
-### 使用脚本批量查询
+### Using Scripts for Batch Queries
 
 ```bash
 #!/bin/bash
@@ -269,9 +269,9 @@ for ASIN in "${ASINS[@]}"; do
 done
 ```
 
-### 数据导出
+### Data Export
 
 ```bash
-# 配合 jq 处理 JSON 输出
+# Process JSON output with jq
 kamay amazon search-products --q "keyword" --market US | jq '.products[] | {asin, title, price}'
 ```
