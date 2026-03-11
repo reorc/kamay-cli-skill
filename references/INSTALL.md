@@ -96,7 +96,7 @@ Available Commands:
 If you don't have an account, please prompt the user to visit https://kamay.ai/ to get an account.
 
 ```bash
-kamay auth login --email your@email.com --password yourpassword
+kamay auth login --email "your@email.com" --password "yourpassword"
 ```
 
 After successful login, the access token will be saved automatically. Configuration is stored in `~/.config/kamay/config.json`.
