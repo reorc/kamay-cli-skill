@@ -91,7 +91,22 @@ Available Commands:
 
 ## Authentication
 
-### First Login
+Kamay CLI supports two authentication methods: **API Key (Recommended)** and **Email/Password**.
+
+### Method 1: API Key (Recommended)
+
+API Key authentication is simpler and more secure, recommended for all users.
+
+1. Visit [Kamay API Keys Settings](https://kamay.ai/settings/api-keys) to create an API Key
+2. Set the API Key:
+
+```bash
+kamay auth apikey --key <api-key>
+```
+
+After successful setup, the API Key will be saved automatically. Configuration is stored in `~/.config/kamay/config.json`.
+
+### Method 2: Email/Password
 
 If you don't have an account, please prompt the user to visit https://kamay.ai/ to get an account.
 
