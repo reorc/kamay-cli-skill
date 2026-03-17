@@ -155,12 +155,35 @@ YYYY-MM-DD, e.g., `2024-01-01`
 
 ## Reference Documents
 
+### English Documentation
+
 - [Installation Guide ./references/INSTALL.md](./references/INSTALL.md)
 - [Amazon Module ./references/amazon-commands.md](./references/amazon-commands.md)
 - [Google Module ./references/google-commands.md](./references/google-commands.md)
 - [Meta Module ./references/meta-commands.md](./references/meta-commands.md)
 - [TikTok Module ./references/tiktok-commands.md](./references/tiktok-commands.md)
 - [Workflow Examples ./references/workflow-examples.md](./references/workflow-examples.md)
+
+### 中文文档 (Chinese Documentation)
+
+- [安装手册 ./references-cn/INSTALL.md](./references-cn/INSTALL.md)
+- **命令参考**
+  - [Amazon 命令](./references-cn/commands-amazon.md)
+  - [Google Trends 命令](./references-cn/commands-google.md)
+  - [Meta 广告命令](./references-cn/commands-meta.md)
+  - [TikTok 命令](./references-cn/commands-tiktok.md)
+  - [Resource 资源管理](./references-cn/commands-resource.md)
+  - [Image 图片生成](./references-cn/commands-image.md)
+  - [Feedback 反馈](./references-cn/commands-feedback.md)
+- **用例与案例**
+  - [典型用例](./references-cn/use-cases.md)
+- **市场洞察能力**
+  - [市场分析专家](./references-cn/market-analyst.md)
+  - [报告转 HTML](./references-cn/report2html.md)
+- **创意工作流能力**
+  - [创意简报](./references-cn/creative-brief.md)
+  - [氛围图生成](./references-cn/mood-image-generator.md)
+  - [广告图生成](./references-cn/ad-image-generator.md)
 
 ## Troubleshooting
 
