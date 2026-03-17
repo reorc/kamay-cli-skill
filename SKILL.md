@@ -184,6 +184,7 @@ YYYY-MM-DD, e.g., `2024-01-01`
   - [创意简报](./references-cn/creative-brief.md)
   - [氛围图生成](./references-cn/mood-image-generator.md)
   - [广告图生成](./references-cn/ad-image-generator.md)
+  - [广告策略心法](./references-cn/ad-image-generator/) (7种策略详解)
 
 ## Troubleshooting
 

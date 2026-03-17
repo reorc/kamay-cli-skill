@@ -42,3 +42,4 @@
 | 创意简报 | [creative-brief.md](./references-cn/creative-brief.md) |
 | 氛围图生成 | [mood-image-generator.md](./references-cn/mood-image-generator.md) |
 | 广告图生成 | [ad-image-generator.md](./references-cn/ad-image-generator.md) |
+| 广告策略心法 | [ad-image-generator/](./references-cn/ad-image-generator/) (7种策略详解) |
