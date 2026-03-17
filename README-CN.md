@@ -25,8 +25,21 @@
 |------|----------|
 | 技能/Skill | [SKILL.md](SKILL.md) |
 | 安装手册 | [INSTALL.md](./references-cn/INSTALL.md) |
-| Amazon 命令详情 | [amazon-commands.md](./references-cn/amazon-commands.md) |
-| Google Trends 命令 | [google-commands.md](./references-cn/google-commands.md) |
-| Meta 广告命令 | [meta-commands.md](./references-cn/meta-commands.md) |
-| TikTok 命令 | [tiktok-commands.md](./references-cn/tiktok-commands.md) |
-| 典型工作流 | [workflow-examples.md](./references-cn/workflow-examples.md) |
+| **命令参考** | |
+| Amazon 命令 | [commands-amazon.md](./references-cn/commands-amazon.md) |
+| Google Trends 命令 | [commands-google.md](./references-cn/commands-google.md) |
+| Meta 广告命令 | [commands-meta.md](./references-cn/commands-meta.md) |
+| TikTok 命令 | [commands-tiktok.md](./references-cn/commands-tiktok.md) |
+| Resource 资源管理 | [commands-resource.md](./references-cn/commands-resource.md) |
+| Image 图片生成 | [commands-image.md](./references-cn/commands-image.md) |
+| Feedback 反馈 | [commands-feedback.md](./references-cn/commands-feedback.md) |
+| **用例与案例** | |
+| 典型用例 | [use-cases.md](./references-cn/use-cases.md) |
+| **市场洞察能力** | |
+| 市场分析专家 | [market-analyst.md](./references-cn/market-analyst.md) |
+| 报告转 HTML | [report2html.md](./references-cn/report2html.md) |
+| **创意工作流能力** | |
+| 创意简报 | [creative-brief.md](./references-cn/creative-brief.md) |
+| 氛围图生成 | [mood-image-generator.md](./references-cn/mood-image-generator.md) |
+| 广告图生成 | [ad-image-generator.md](./references-cn/ad-image-generator.md) |
+| 广告策略心法 | [ad-image-generator/](./references-cn/ad-image-generator/) (7种策略详解) |
