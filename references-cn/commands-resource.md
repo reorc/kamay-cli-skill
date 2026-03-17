@@ -26,7 +26,7 @@ kamay resource upload -f ./images/product.jpg -n "产品图片" --project-id "pr
 | `-n, --name` | string | 是 | 资源名称 |
 | `--project-id` | string | 否 | 关联的项目 ID |
 
-**返回：** 资源 URI，可用于后续引用
+**返回：** 资源 URI（`mention://` 格式），可用于后续引用
 
 ---
 
@@ -35,7 +35,7 @@ kamay resource upload -f ./images/product.jpg -n "产品图片" --project-id "pr
 通过 URI 下载资源到本地目录。
 
 ```bash
-kamay resource download -u "resource://abc123" -o ./downloads
+kamay resource download -u "mention://abc123" -o ./downloads
 ```
 
 **参数：**
