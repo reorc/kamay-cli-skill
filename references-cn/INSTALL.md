@@ -91,7 +91,22 @@ Available Commands:
 
 ## 认证
 
-### 首次登录
+Kamay CLI 支持两种认证方式：**API Key（推荐）** 和 **邮箱/密码**。
+
+### 方式一：API Key（推荐）
+
+API Key 认证更简单、更安全，推荐所有用户使用。
+
+1. 访问 [Kamay API Keys 设置页](https://kamay.ai/settings/api-keys) 创建 API Key
+2. 设置 API Key：
+
+```bash
+kamay auth apikey --key <api-key>
+```
+
+设置成功后会自动保存 API Key，配置信息存储在 `~/.config/kamay/config.json`。
+
+### 方式二：邮箱/密码
 
 如果没有账号，请提示用户访问 https://kamay.ai/ 获取账号。
 
