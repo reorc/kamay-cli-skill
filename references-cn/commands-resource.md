@@ -88,5 +88,3 @@ kamay resource list -p 2 --page-size 20
 - `ai_generated` - AI 生成
 - `task_collected` - 任务采集
 - `system_preset` - 系统预设
-
----

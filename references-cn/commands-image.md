@@ -94,5 +94,3 @@ kamay image understand-image \
 - `markdown` - Markdown 格式（默认）
 - `json` - JSON 格式
 - `text` - 纯文本格式
-
----
