@@ -17,6 +17,8 @@ kamay auth status
 
 If kamay is not installed or your login has expired, follow the [Installation Guide](./references/INSTALL.md).
 
+To check if a newer version is available, see [Upgrade Guide](#upgrade-guide) below.
+
 Use `kamay <module> --help` and `kamay <module> <command> --help` to explore all available commands and parameters.
 
 ## Capabilities Overview
@@ -91,6 +93,22 @@ Generate **text-free** lifestyle/mood images for brand visual exploration:
 
 See: [Mood Image Generator](./references/mood-image-generator.md)
 
+### Image Generation Tips
+
+**Rate Limit Fallback**: If `kamay image generate-image` fails due to rate limiting, retry with the fallback model:
+```bash
+kamay image generate-image --prompt "..." --model seedream4.5
+```
+Inform the user that the fallback model is being used, as output quality may differ.
+
+**Displaying Results**: After image generation, download the image and display it directly to the user:
+```bash
+kamay resource download -u "mention://xxx" -o ./images
+# Then show the downloaded image file to the user
+```
+
+**Shareable Links**: After showing the image, ask the user if they would like a shareable resource link. The `mention://` URI returned by `generate-image` can be shared directly, or use `kamay resource list` to find and manage generated resources.
+
 ## Typical Workflows
 
 ### End-to-End: Data → Report → Creative
@@ -142,11 +160,50 @@ For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
 
 ## Reference Documents
 
-- [Installation Guide](./references/INSTALL.md)
+- [Installation Guide](./references/INSTALL.md) | [Upgrade Guide](#upgrade-guide)
 - **Commands**: [Amazon](./references/commands-amazon.md) | [Google](./references/commands-google.md) | [Meta](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Feedback](./references/commands-feedback.md)
 - **Insights**: [Market Analyst](./references/market-analyst.md) | [Report to HTML](./references/report2html.md)
 - **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies)
 - **Use Cases**: [Typical Use Cases](./references/use-cases.md)
+
+## Upgrade Guide
+
+To check if a newer version of Kamay CLI is available:
+
+**Step 1**: Get the current installed version:
+```bash
+kamay version
+```
+
+**Step 2**: Check the latest release version on GitHub:
+```bash
+curl -sI https://github.com/reorc/kamay-cli-skill/releases/latest | grep -i location | sed 's/.*tag\///' | tr -d '[:space:]'
+```
+
+**Step 3**: If the latest version is newer than the current version, ask the user whether to upgrade. If the user approves, run the one-click upgrade:
+```bash
+OS=$(uname -s | tr '[:upper:]' '[:lower:]'); ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/'); curl -LO "https://github.com/reorc/kamay-cli-skill/releases/latest/download/kamay-${OS}-${ARCH}" && sudo install -m 755 "kamay-${OS}-${ARCH}" /usr/local/bin/kamay && rm "kamay-${OS}-${ARCH}" && kamay version
+```
+
+**Step 4**: Also update the skill reference docs. Check if the skill was installed via git clone or ZIP, then update accordingly:
+```bash
+# For Claude Code
+SKILL_DIR=~/.claude/skills/kamay-cli
+# For OpenCode, OpenClaw, and other general Agents
+# SKILL_DIR=~/.agents/skills/kamay-cli
+
+# If installed via git clone
+if [ -d "$SKILL_DIR/.git" ]; then
+  cd "$SKILL_DIR" && git pull
+# If installed via ZIP download, re-download and replace
+else
+  curl -L https://github.com/reorc/kamay-cli-skill/archive/refs/heads/main.zip -o /tmp/kamay-cli.zip
+  rm -rf "$SKILL_DIR"
+  unzip /tmp/kamay-cli.zip -d "$(dirname "$SKILL_DIR")"
+  mv "$(dirname "$SKILL_DIR")/kamay-cli-skill-main" "$SKILL_DIR"
+  rm /tmp/kamay-cli.zip
+fi
+```
 
 ## Troubleshooting
 
