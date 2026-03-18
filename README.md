@@ -1,6 +1,6 @@
 # Kamay CLI Skill
 
-[English](README.md) | [中文文档](README-CN.md)
+[English](README.md)
 
 ## Introduction
 
