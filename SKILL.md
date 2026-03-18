@@ -1,194 +1,157 @@
 ---
 name: kamay-cli
-description: Kamay CLI User Guide - Data-driven marketing analytics tool. Supports data acquisition and analysis for Amazon, Google Trends, Meta Ads, TikTok, and other platforms.
-version: 0.1.2
+description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, and creative brief writing.
+version: 0.2.0
 ---
 
 # Kamay CLI User Guide
 
-[Kamay](https://kamay.ai/) CLI is a professional command-line tool for data-driven marketing, helping users discover market insights, analyze competitors, and research advertising creatives.
-
-## Core Modules
-
-| Module | Function |
-|--------|----------|
-| **amazon** | E-commerce data analysis: product search, category trends, keyword research, review analysis |
-| **google** | Google Trends search trend analysis |
-| **meta** | Meta (Facebook/Instagram) Ads Library analysis |
-| **tiktok** | TikTok video and ad analysis |
+[Kamay](https://kamay.ai/) CLI is a professional command-line tool for data-driven marketing. It covers the full workflow from **data acquisition** to **market insight reports** to **creative asset generation**.
 
 ## Quick Start
-
-### Prerequisites
 
 ```bash
 kamay --help
 kamay auth status
 ```
 
-If the kamay program is not installed on your system, or if you are not logged in / your login has expired, read and follow the [./references/INSTALL.md](./references/INSTALL.md) document to complete installation and configuration.
+If kamay is not installed or your login has expired, follow the [Installation Guide](./references/INSTALL.md).
 
-## Amazon Module
+Use `kamay <module> --help` and `kamay <module> <command> --help` to explore all available commands and parameters.
 
-### Product Commands
+## Capabilities Overview
 
-| Command | Function |
-|---------|----------|
-| `search-products` | Search products by keyword |
-| `get-product` | Get product details (ASIN) |
-| `get-product-reviews` | Get product reviews |
+### 1. Multi-Platform Data Acquisition
 
-### Category Commands
+| Module | Function |
+|--------|----------|
+| **amazon** | Product search, category trends, keyword research, review analysis |
+| **google** | Google Trends search interest over time |
+| **meta** | Meta (Facebook/Instagram) Ads Library search & detail |
+| **tiktok** | TikTok video search, ads library, video comments |
 
-| Command | Function |
-|---------|----------|
-| `search-category` | Search categories, get Node ID |
-| `get-category-best-sellers` | Get category bestsellers Top 100 |
-| `get-category-trend` | Get category trend data |
+For detailed command parameters, see:
+- [Amazon Commands](./references/commands-amazon.md)
+- [Google Trends Commands](./references/commands-google.md)
+- [Meta Ads Commands](./references/commands-meta.md)
+- [TikTok Commands](./references/commands-tiktok.md)
 
-### Keyword Commands
+### 2. Market Insight & Visual Reports
 
-| Command | Function |
-|---------|----------|
-| `get-keyword-overview` | Get keyword overview |
-| `get-keyword-trends` | Get keyword search trends |
-| `expand-keywords` | Expand related keywords |
-| `list-asin-keywords` | Get ASIN related keywords |
-| `query-aba-keywords` | Query ABA trending keywords |
+Kamay can automatically analyze collected data and generate professional visual reports.
 
-## Google Module
+**Market Analyst** — AI-driven category research that transforms raw data into actionable insights:
+- Category opportunity assessment, consumer demand analysis, competitive positioning
+- VOC (Voice of Customer) analysis from product reviews
+- Seasonality pattern recognition and pricing strategy insights
+- Outputs structured reports with executive summaries, data tables, and action items
 
-| Command | Function |
-|---------|----------|
-| `trends-get-interest-over-time` | Get Google Trends search trends |
+**Report to HTML** — Convert any analysis report into a professional, shareable HTML page:
+- Responsive layout with data visualization charts (bar, line, pie, area, heatmap)
+- Self-contained single-page HTML, no external dependencies
+- Number formatting, color-coded trends (green ↑ / red ↓), hover interactions
+- Suitable for team sharing, client presentation, and archiving
 
-## Meta Module
+See: [Market Analyst](./references/market-analyst.md) | [Report to HTML](./references/report2html.md)
 
-| Command | Function |
-|---------|----------|
-| `ads-search-ads` | Search Meta Ads Library |
-| `ads-get-ad-detail` | Get ad details |
+### 3. Creative Brief Generation
 
-## TikTok Module
+Transform market research into structured creative strategy documents:
+- Synthesizes market insights, competitive analysis, and brand profile
+- Outputs objective, target audience, core message, visual direction, channel strategy
+- Supports iterative refinement based on feedback
+- Bridges the gap between data analysis and creative production
 
-| Command | Function |
-|---------|----------|
-| `search-videos` | Search videos |
-| `search-ads` | Search TikTok Ads Library |
-| `list-comments` | Get video comments |
+See: [Creative Brief](./references/creative-brief.md)
+
+### 4. Ad Image Generation (7 Strategies)
+
+Generate professional ad creative images **with copy overlay** for actual ad placements:
+
+| Strategy | Best For |
+|----------|----------|
+| Features-Benefits | Functional/tech products |
+| Lifestyle | Fashion, lifestyle products |
+| Announcement | New launches, limited editions |
+| Testimonial | Products needing trust building |
+| Problem-Solution | Products solving specific problems |
+| Us-vs-Them | Products with clear competitive advantage |
+| Transformation | Products with visible before/after results |
+
+Supports channel-specific sizing (Instagram, Xiaohongshu, e-commerce main images, feed ads, etc.)
+
+See: [Ad Image Generator](./references/ad-image-generator.md) | [7 Strategy Guides](./references/ad-image-generator/)
+
+### 5. Mood Image Generation
+
+Generate **text-free** lifestyle/mood images for brand visual exploration:
+- Product scene photography with professional lighting and composition
+- 4 variant types: scene, human, angle, lighting
+- Suitable for e-commerce detail pages, social media content, creative concept validation
+
+See: [Mood Image Generator](./references/mood-image-generator.md)
 
 ## Typical Workflows
 
-### Competitor Analysis
+### End-to-End: Data → Report → Creative
 
+```
+1. Collect data (amazon/google/meta/tiktok commands)
+2. Generate market insight report (Market Analyst)
+3. Convert report to visual HTML page (Report to HTML)
+4. Create creative brief from insights (Creative Brief)
+5. Generate ad images or mood images (Ad/Mood Image Generator)
+```
+
+### Quick Examples
+
+**Competitor Analysis**:
 ```bash
-# Search products to get ASIN
 kamay amazon search-products --q "wireless earbuds" --market US
-
-# Get product details
 kamay amazon get-product --asin B09V3KXJPB --market US
-
-# Get reviews
 kamay amazon get-product-reviews --asin B09V3KXJPB --market US --start_date 2024-01-01
-
-# Get keywords
 kamay amazon list-asin-keywords --asin B09V3KXJPB --market US
 ```
 
-### Category Trend Analysis
-
+**Category Trend Analysis**:
 ```bash
-# Search category to get Node ID
 kamay amazon search-category --name "Cell Phones" --market US
-
-# Get bestsellers
 kamay amazon get-category-best-sellers --node_id 3743561 --market US
-
-# Get trends (multiple metrics)
 kamay amazon get-category-trend --node_id 3743561 --trend_types "sales_volume,avg_price,brand_count" --market US
 ```
 
-### Keyword Research
-
+**Ad Creative Research**:
 ```bash
-# Keyword overview
-kamay amazon get-keyword-overview --keyword "wireless earbuds" --market US
-
-# Expand keywords
-kamay amazon expand-keywords --keyword "headphones" --market US
-
-# Trend comparison
-kamay amazon get-keyword-trends --keywords "wireless earbuds,airpods" --market US
-
-# ABA trending keywords
-kamay amazon query-aba-keywords --market US --node_ids 12557637011
-```
-
-### Ad Creative Analysis
-
-```bash
-# Meta ads
 kamay meta ads-search-ads --q "nike shoes" --country US
-
-# TikTok ads
 kamay tiktok search-ads --q "fitness app" --region DE
-
-# TikTok popular videos
 kamay tiktok search-videos --keyword "product review"
 ```
 
-### Google Trends Validation
-
+**Google Trends Validation**:
 ```bash
 kamay google trends-get-interest-over-time --q "wireless earbuds" --geo US
 ```
 
+For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
+
 ## Common Parameters
 
-### Amazon Marketplace Codes
+**Amazon Marketplace Codes**: US, UK, DE, JP, CA, FR, ES, IT
 
-US, UK, DE, JP, CA, FR, ES, IT
-
-### Date Format
-
-YYYY-MM-DD, e.g., `2024-01-01`
+**Date Format**: YYYY-MM-DD, e.g., `2024-01-01`
 
 ## Reference Documents
 
-- [Installation Guide ./references/INSTALL.md](./references/INSTALL.md)
-- **Command Reference**
-  - [Amazon Commands](./references/commands-amazon.md)
-  - [Google Trends Commands](./references/commands-google.md)
-  - [Meta Ads Commands](./references/commands-meta.md)
-  - [TikTok Commands](./references/commands-tiktok.md)
-  - [Resource Management](./references/commands-resource.md)
-  - [Image Generation](./references/commands-image.md)
-  - [Feedback](./references/commands-feedback.md)
-- **Use Cases**
-  - [Typical Use Cases](./references/use-cases.md)
-- **Market Insight Capabilities**
-  - [Market Analyst](./references/market-analyst.md)
-  - [Report to HTML](./references/report2html.md)
-- **Creative Workflow Capabilities**
-  - [Creative Brief](./references/creative-brief.md)
-  - [Mood Image Generator](./references/mood-image-generator.md)
-  - [Ad Image Generator](./references/ad-image-generator.md)
-  - [Ad Strategy Guides](./references/ad-image-generator/) (7 strategy guides)
+- [Installation Guide](./references/INSTALL.md)
+- **Commands**: [Amazon](./references/commands-amazon.md) | [Google](./references/commands-google.md) | [Meta](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Feedback](./references/commands-feedback.md)
+- **Insights**: [Market Analyst](./references/market-analyst.md) | [Report to HTML](./references/report2html.md)
+- **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies)
+- **Use Cases**: [Typical Use Cases](./references/use-cases.md)
 
 ## Troubleshooting
-
-### Authentication Issues
 
 ```bash
 kamay auth status
 kamay auth refresh
 kamay auth login --email <email> --password <password>
-```
-
-## Getting Help
-
-```bash
-kamay --help
-kamay <module> --help
-kamay <module> <command> --help
 ```
