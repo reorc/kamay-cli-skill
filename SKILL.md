@@ -158,11 +158,24 @@ YYYY-MM-DD, e.g., `2024-01-01`
 ### English Documentation
 
 - [Installation Guide ./references/INSTALL.md](./references/INSTALL.md)
-- [Amazon Module ./references/amazon-commands.md](./references/amazon-commands.md)
-- [Google Module ./references/google-commands.md](./references/google-commands.md)
-- [Meta Module ./references/meta-commands.md](./references/meta-commands.md)
-- [TikTok Module ./references/tiktok-commands.md](./references/tiktok-commands.md)
-- [Workflow Examples ./references/workflow-examples.md](./references/workflow-examples.md)
+- **Command Reference**
+  - [Amazon Commands](./references/commands-amazon.md)
+  - [Google Trends Commands](./references/commands-google.md)
+  - [Meta Ads Commands](./references/commands-meta.md)
+  - [TikTok Commands](./references/commands-tiktok.md)
+  - [Resource Management](./references/commands-resource.md)
+  - [Image Generation](./references/commands-image.md)
+  - [Feedback](./references/commands-feedback.md)
+- **Use Cases**
+  - [Typical Use Cases](./references/use-cases.md)
+- **Market Insight Capabilities**
+  - [Market Analyst](./references/market-analyst.md)
+  - [Report to HTML](./references/report2html.md)
+- **Creative Workflow Capabilities**
+  - [Creative Brief](./references/creative-brief.md)
+  - [Mood Image Generator](./references/mood-image-generator.md)
+  - [Ad Image Generator](./references/ad-image-generator.md)
+  - [Ad Strategy Guides](./references/ad-image-generator/) (7 strategy guides)
 
 ### 中文文档 (Chinese Documentation)
 

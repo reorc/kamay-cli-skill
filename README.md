@@ -25,8 +25,21 @@ Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill
 |-------------|-------------------|
 | Skill Definition | [SKILL.md](SKILL.md) |
 | Installation Guide | [INSTALL.md](./references/INSTALL.md) |
-| Amazon Commands | [amazon-commands.md](./references/amazon-commands.md) |
-| Google Trends Commands | [google-commands.md](./references/google-commands.md) |
-| Meta Ads Commands | [meta-commands.md](./references/meta-commands.md) |
-| TikTok Commands | [tiktok-commands.md](./references/tiktok-commands.md) |
-| Workflow Examples | [workflow-examples.md](./references/workflow-examples.md) |
+| **Command Reference** | |
+| Amazon Commands | [commands-amazon.md](./references/commands-amazon.md) |
+| Google Trends Commands | [commands-google.md](./references/commands-google.md) |
+| Meta Ads Commands | [commands-meta.md](./references/commands-meta.md) |
+| TikTok Commands | [commands-tiktok.md](./references/commands-tiktok.md) |
+| Resource Management | [commands-resource.md](./references/commands-resource.md) |
+| Image Generation | [commands-image.md](./references/commands-image.md) |
+| Feedback | [commands-feedback.md](./references/commands-feedback.md) |
+| **Use Cases** | |
+| Typical Use Cases | [use-cases.md](./references/use-cases.md) |
+| **Market Insight Capabilities** | |
+| Market Analyst | [market-analyst.md](./references/market-analyst.md) |
+| Report to HTML | [report2html.md](./references/report2html.md) |
+| **Creative Workflow Capabilities** | |
+| Creative Brief | [creative-brief.md](./references/creative-brief.md) |
+| Mood Image Generator | [mood-image-generator.md](./references/mood-image-generator.md) |
+| Ad Image Generator | [ad-image-generator.md](./references/ad-image-generator.md) |
+| Ad Strategy Guides | [ad-image-generator/](./references/ad-image-generator/) (7 strategies) |
