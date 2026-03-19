@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 # Device Authorization - Step 2: Poll for token
-# Usage: bash scripts/device-auth-token.sh <device_code> <code_verifier>
+# Usage: bash scripts/device-auth-token.sh [--dev] <device_code> <code_verifier>
 
 set -euo pipefail
 
 API_BASE="https://kamay.ai"
+if [[ "${1:-}" == "--dev" ]]; then
+  API_BASE="https://kamay.test.reorc.cloud"
+  shift
+fi
 
 if [ $# -lt 2 ]; then
-  echo "Usage: bash scripts/device-auth-token.sh <device_code> <code_verifier>"
+  echo "Usage: bash scripts/device-auth-token.sh [--dev] <device_code> <code_verifier>"
   exit 1
 fi
 

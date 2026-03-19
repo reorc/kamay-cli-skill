@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # Device Authorization - Step 1: Initialize
 # Generates PKCE parameters, requests device authorization, and prints results.
-# Usage: bash scripts/device-auth-init.sh
+# Usage: bash scripts/device-auth-init.sh [--dev]
 
 set -euo pipefail
 
 API_BASE="https://kamay.ai"
+if [[ "${1:-}" == "--dev" ]]; then
+  API_BASE="https://kamay.test.reorc.cloud"
+  shift
+fi
 
 # Generate PKCE parameters
 CODE_VERIFIER=$(openssl rand -base64 48 | tr -d '=/+' | head -c 48)
