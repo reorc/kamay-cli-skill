@@ -211,7 +211,7 @@ When the user needs to log in, offer three choices:
 
 1. **Email/Password** — `kamay auth login --email <email> --password <password>`
 2. **I have an API Key** — `kamay auth apikey --key <key>`
-3. **Help me register a key** — Use the device authorization flow (see [Installation Guide](./references/INSTALL.md#option-3-register-a-new-key-device-authorization)) to automatically generate a browser link, wait for the user to authorize, then save the key with `kamay auth apikey`.
+3. **Help me register a key** — Use `kamay auth device` to generate a browser link, wait for the user to authorize, then run `kamay auth device --poll` to complete (see [Installation Guide](./references/INSTALL.md#option-3-register-a-new-key-device-authorization)).
 
 Check status anytime: `kamay auth status`
 
