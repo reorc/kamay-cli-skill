@@ -40,7 +40,9 @@ fi
 
 API_KEY=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['data']['access_token'])")
 
+# Automatically save the key
+kamay auth apikey --key "$API_KEY"
+
 echo "API_KEY=$API_KEY"
 echo ""
-echo ">>> Authorization successful! Save the key by running:"
-echo "    kamay auth apikey --key \"$API_KEY\""
+echo ">>> Authorization successful! API Key has been saved."

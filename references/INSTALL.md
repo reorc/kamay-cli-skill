@@ -135,11 +135,7 @@ bash scripts/device-auth-token.sh "<DEVICE_CODE>" "<CODE_VERIFIER>"
 
 Use the `DEVICE_CODE` and `CODE_VERIFIER` values printed by Step 1. If the output says `PENDING`, the user hasn't authorized yet — ask them to complete the browser step and try again.
 
-**Step 3** — Once the script prints `API_KEY=...`, save it:
-
-```bash
-kamay auth apikey --key "<API_KEY>"
-```
+Once authorization succeeds, the script automatically saves the API Key via `kamay auth apikey`.
 
 ### Verify Login Status
 
