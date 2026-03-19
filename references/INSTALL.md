@@ -117,25 +117,23 @@ Ask the user to provide their API Key, then run the command.
 
 For users who don't have an API Key yet, use the device authorization flow to generate one automatically.
 
-The `scripts/` directory (relative to this skill's install path) contains helper scripts that handle the technical details. The skill install path is typically `~/.claude/skills/kamay-cli` or `~/.agents/skills/kamay-cli`.
-
 **Step 1** — Initialize and get a verification link:
 
 ```bash
-bash scripts/device-auth-init.sh
+kamay auth device
 ```
 
-The script prints a `VERIFICATION_URL`. Tell the user to open that link in their browser to log in and authorize.
+The command prints a `VERIFICATION_URL`. Tell the user to open that link in their browser to log in and authorize.
 
 **Step 2** — After the user confirms they have authorized, poll for the token:
 
 ```bash
-bash scripts/device-auth-token.sh "<DEVICE_CODE>" "<CODE_VERIFIER>"
+kamay auth device --poll
 ```
 
-Use the `DEVICE_CODE` and `CODE_VERIFIER` values printed by Step 1. If the output says `PENDING`, the user hasn't authorized yet — ask them to complete the browser step and try again.
+If the output says `PENDING`, the user hasn't authorized yet — ask them to complete the browser step and run `--poll` again. The authorization expires after 5 minutes.
 
-Once authorization succeeds, the script automatically saves the API Key via `kamay auth apikey`.
+Once authorization succeeds, the API Key is automatically saved.
 
 ### Verify Login Status
 
