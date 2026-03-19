@@ -91,30 +91,55 @@ Available Commands:
 
 ## Authentication
 
-Kamay CLI supports two authentication methods: **API Key (Recommended)** and **Email/Password**.
+When the user needs to authenticate, present these three options and let them choose:
 
-### Method 1: API Key (Recommended)
+1. **Email/Password** — "I have a Kamay account and know my credentials"
+2. **API Key** — "I already have an API Key"
+3. **Register a new key** — "Help me get a key" (opens a browser link for authorization)
 
-API Key authentication is simpler and more secure, recommended for all users.
-
-1. Visit [Kamay API Keys Settings](https://kamay.ai/settings/api-keys) to create an API Key
-2. Set the API Key:
-
-```bash
-kamay auth apikey --key <api-key>
-```
-
-After successful setup, the API Key will be saved automatically. Configuration is stored in `~/.config/kamay/config.json`.
-
-### Method 2: Email/Password
-
-If you don't have an account, please prompt the user to visit https://kamay.ai/ to get an account.
+### Option 1: Email/Password
 
 ```bash
 kamay auth login --email "your@email.com" --password "yourpassword"
 ```
 
-After successful login, the access token will be saved automatically. Configuration is stored in `~/.config/kamay/config.json`.
+Ask the user for their email and password, then run the command.
+
+### Option 2: I Already Have an API Key
+
+```bash
+kamay auth apikey --key <api-key>
+```
+
+Ask the user to provide their API Key, then run the command.
+
+### Option 3: Register a New Key (Device Authorization)
+
+For users who don't have an API Key yet, use the device authorization flow to generate one automatically.
+
+The `scripts/` directory (relative to this skill's install path) contains helper scripts that handle the technical details. The skill install path is typically `~/.claude/skills/kamay-cli` or `~/.agents/skills/kamay-cli`.
+
+**Step 1** — Initialize and get a verification link:
+
+```bash
+bash scripts/device-auth-init.sh
+```
+
+The script prints a `VERIFICATION_URL`. Tell the user to open that link in their browser to log in and authorize.
+
+**Step 2** — After the user confirms they have authorized, poll for the token:
+
+```bash
+bash scripts/device-auth-token.sh "<DEVICE_CODE>" "<CODE_VERIFIER>"
+```
+
+Use the `DEVICE_CODE` and `CODE_VERIFIER` values printed by Step 1. If the output says `PENDING`, the user hasn't authorized yet — ask them to complete the browser step and try again.
+
+**Step 3** — Once the script prints `API_KEY=...`, save it:
+
+```bash
+kamay auth apikey --key "<API_KEY>"
+```
 
 ### Verify Login Status
 
