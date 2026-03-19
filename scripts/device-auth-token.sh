@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-API_BASE="https://kamay.test.reorc.cloud"
+API_BASE="https://kamay.ai"
 
 if [ $# -lt 2 ]; then
   echo "Usage: bash scripts/device-auth-token.sh <device_code> <code_verifier>"

@@ -5,7 +5,7 @@
 
 set -euo pipefail
 
-API_BASE="https://kamay.test.reorc.cloud"
+API_BASE="https://kamay.ai"
 
 # Generate PKCE parameters
 CODE_VERIFIER=$(openssl rand -base64 48 | tr -d '=/+' | head -c 48)
