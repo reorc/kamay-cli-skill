@@ -155,15 +155,26 @@ kamay auth logout
 
 ## Upgrade
 
-### Manual Upgrade
+### CLI Upgrade
 
-1. Download the new version binary
-2. Replace the old version file
-3. Verify the version
+Use the built-in update command:
 
 ```bash
-kamay version
+kamay update
 ```
+
+The command will automatically check for the latest version, download, and replace the current binary.
+
+### Skill Upgrade
+
+If you installed the skill via git clone:
+
+```bash
+cd ~/.claude/skills/kamay-cli  # or the corresponding agent directory
+git pull
+```
+
+If you installed via ZIP download, re-download and extract the latest version.
 
 ## Uninstallation
 
