@@ -208,24 +208,12 @@ For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
 
 ## Upgrade Guide
 
-To check if a newer version of Kamay CLI is available:
-
-**Step 1**: Get the current installed version:
+**CLI upgrade** — Use the built-in update command:
 ```bash
-kamay version
+kamay update
 ```
 
-**Step 2**: Check the latest release version on GitHub:
-```bash
-curl -sI https://github.com/reorc/kamay-cli-skill/releases/latest | grep -i location | sed 's/.*tag\///' | tr -d '[:space:]'
-```
-
-**Step 3**: If the latest version is newer than the current version, ask the user whether to upgrade. If the user approves, run the one-click upgrade:
-```bash
-OS=$(uname -s | tr '[:upper:]' '[:lower:]'); ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/'); curl -LO "https://github.com/reorc/kamay-cli-skill/releases/latest/download/kamay-${OS}-${ARCH}" && sudo install -m 755 "kamay-${OS}-${ARCH}" /usr/local/bin/kamay && rm "kamay-${OS}-${ARCH}" && kamay version
-```
-
-**Step 4**: Also update the skill reference docs. Check if the skill was installed via git clone or ZIP, then update accordingly:
+**Skill upgrade** — Update the skill reference docs. Check if the skill was installed via git clone or ZIP, then update accordingly:
 ```bash
 # For Claude Code
 SKILL_DIR=~/.claude/skills/kamay-cli
