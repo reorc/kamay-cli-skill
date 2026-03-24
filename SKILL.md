@@ -1,6 +1,6 @@
 ---
 name: kamay-cli
-description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, and creative brief writing.
+description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, video generation (Seedance, Sora2, Kling, Veo), and creative brief writing.
 version: 0.2.0
 ---
 
@@ -93,6 +93,45 @@ Generate **text-free** lifestyle/mood images for brand visual exploration:
 
 See: [Mood Image Generator](./references/mood-image-generator.md)
 
+### 6. Video Generation
+
+Generate AI videos from text prompts and/or reference images using multiple models:
+
+| Model | Provider | Duration | Highlights |
+|-------|----------|----------|------------|
+| **seedance** | Volcengine Seedance 1.5 Pro | 4-12s | Audio sync, draft mode, multi-shot chaining |
+| **sora2** | Sora-2 Preview | 4/8/12s | Reference image support |
+| **kling** | Kling V3 | 3-15s | Start/end frame control, sound |
+| **veo** | Veo 3.1 (Google) | 4/6/8s | Style/subject references, audio |
+
+**Two-stage workflow:**
+- `kamay video submit` — Non-blocking submit, returns task_id (best for agents)
+- `kamay video status` — Check task progress by task_id
+- `kamay video wait` — Blocking submit + poll (best for terminal users)
+
+```bash
+# Quick example (blocking)
+kamay video wait --model seedance --prompt "A cat playing piano in a jazz bar" --duration 8
+
+# Agent workflow (non-blocking)
+kamay video submit --model kling --prompt "Product showcase" --image ./product.jpg --json
+kamay video status --task-id "abc123" --provider evolink --json
+```
+
+See: [Video Commands](./references/commands-video.md)
+
+### 7. Video Ad Generation (Full Workflow)
+
+Generate complete video ads from product info: creative proposals → concept art → visual anchors → storyboard → video generation.
+
+**Two-stage workflow:**
+1. **Creative Proposals**: Collect product info → generate 2-3 differentiated proposals with concept images → wait for user selection
+2. **Production**: Lock style → generate visual anchor images → write storyboard → generate video per shot → summarize results
+
+Supports model-per-shot selection (Kling for flexible people+product scenes, Veo for high-fidelity product close-ups, Sora-2 for pure atmosphere shots, Seedance for frame transitions).
+
+See: [Video Ad Generator](./references/video-ad-generator.md) | [Prompt Template](./references/video-ad-generator/prompt-template.md) | [Hair Dryer Example](./references/video-ad-generator/hair-dryer-example.md)
+
 ### Image Generation Tips
 
 **Rate Limit Fallback**: If `kamay image generate-image` fails due to rate limiting, retry with the fallback model:
@@ -119,6 +158,7 @@ kamay resource download -u "mention://xxx" -o ./images
 3. Convert report to visual HTML page (Report to HTML)
 4. Create creative brief from insights (Creative Brief)
 5. Generate ad images or mood images (Ad/Mood Image Generator)
+6. Generate promotional videos (Video Generator)
 ```
 
 ### Quick Examples
@@ -161,9 +201,9 @@ For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
 ## Reference Documents
 
 - [Installation Guide](./references/INSTALL.md) | [Upgrade Guide](#upgrade-guide)
-- **Commands**: [Amazon](./references/commands-amazon.md) | [Google](./references/commands-google.md) | [Meta](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Feedback](./references/commands-feedback.md)
+- **Commands**: [Amazon](./references/commands-amazon.md) | [Google](./references/commands-google.md) | [Meta](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Video](./references/commands-video.md) | [Feedback](./references/commands-feedback.md)
 - **Insights**: [Market Analyst](./references/market-analyst.md) | [Report to HTML](./references/report2html.md)
-- **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies)
+- **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies) | [Video Commands](./references/commands-video.md) | [Video Ad Generator](./references/video-ad-generator.md)
 - **Use Cases**: [Typical Use Cases](./references/use-cases.md)
 
 ## Upgrade Guide
