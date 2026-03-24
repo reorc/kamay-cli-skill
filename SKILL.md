@@ -8,6 +8,19 @@ version: 0.2.0
 
 [Kamay](https://kamay.ai/) CLI is a professional command-line tool for data-driven marketing. It covers the full workflow from **data acquisition** to **market insight reports** to **creative asset generation**.
 
+## Version Update Reminder
+
+**IMPORTANT**: When executing any `kamay` command, check the command output for version update notifications like:
+
+```
+New version available: dev → v0.2.1
+Run 'kamay update' to upgrade
+```
+
+If such a message appears in the output, **after completing the user's task**, add a friendly reminder:
+
+> 💡 A new version of Kamay CLI is available (v0.2.1). Would you like me to upgrade it for you? Just say "yes" and I'll run `kamay update`.
+
 ## Quick Start
 
 ```bash
