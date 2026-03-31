@@ -63,6 +63,7 @@ kamay image generate-image \
   --reference-images "mention://resource/产品原图" \
   --aspect-ratio "9:16"
 # 用产品原图做 reference 确保外观一致
+# 也可以直接用本地路径：--reference-images "./product.jpg"
 ```
 
 #### 角色锚点
