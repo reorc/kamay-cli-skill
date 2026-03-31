@@ -23,7 +23,12 @@ kamay image generate-image \
   --resolution "2K" \
   --aspect_ratio "16:9"
 
-# Use reference images (requires mention:// URI format)
+# Use reference images (local path or mention:// URI)
+kamay image generate-image \
+  --prompt "Convert this image to watercolor style" \
+  --reference_images "./product.jpg"
+
+# Use mention:// URI as reference
 kamay image generate-image \
   --prompt "Convert this image to watercolor style" \
   --reference_images "mention://abc123"
@@ -37,7 +42,7 @@ kamay image generate-image \
 | `--name` | string | No | Image name |
 | `--aspect_ratio` | string | No | Aspect ratio (default: 1:1) |
 | `--resolution` | string | No | Resolution (default: 1K) |
-| `--reference_images` | string | No | Reference image URI (mention:// format) |
+| `--reference_images` | string | No | Reference image (local file path or `mention://` URI) |
 
 **Supported aspect ratios:**
 - `1:1` - Square
@@ -113,9 +118,28 @@ kamay image understand-image \
 
 ---
 
+## Image Handling
+
+The `--reference_images` flag auto-detects input type:
+- **Local file path** → uploads to Kamay resource, converts to `mention://` URI
+- **`mention://` URI** → used as-is
+
 ## Image Workflow Examples
 
-### Complete Workflow from Local Upload to Analysis
+### Using Local Image as Reference
+
+```bash
+# Directly use local file as reference (auto-uploads internally)
+kamay image generate-image \
+  --prompt "A similar style photo, but sunset scene" \
+  --reference_images "./photo.jpg"
+# Returns: mention://def456
+
+# Download generated image
+kamay resource download -u "mention://def456" -o ./output
+```
+
+### Using mention:// URI as Reference
 
 ```bash
 # 1. Upload local image to get URI
