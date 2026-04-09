@@ -7,6 +7,7 @@ Generate videos using multiple AI models with a two-stage async workflow: **subm
 | Model | Provider | Duration | Key Features |
 |-------|----------|----------|-------------|
 | **seedance** | Volcengine Seedance 1.5 Pro | 4-12s | Audio sync, draft mode, last-frame chaining |
+| **seedance2** | Volcengine Seedance 2.0 | 4-15s | Multi-ref images (1~4), ref video, ref audio |
 | **sora2** | Sora-2 Preview | 4/8/12s | Reference image with resize modes |
 | **kling** | Kling V3 | 3-15s | Start/end frame, sound control |
 | **veo** | Veo 3.1 (Google) | 4/6/8s | Style/subject references, audio, negative prompt |
@@ -37,11 +38,16 @@ kamay video submit --model <model> --prompt "..." [flags]
 
 | Flag | Models | Description |
 |------|--------|-------------|
-| `--resolution` | seedance, sora2, veo | Resolution: 480p, 720p, 1080p |
-| `--audio` | seedance, veo | Generate synced audio (default: true) |
+| `--resolution` | seedance, seedance2, sora2, veo | Resolution: 480p, 720p, 1080p |
+| `--audio` | seedance, seedance2, veo | Generate synced audio (default: true) |
 | `--draft` | seedance | Preview mode at 480p, lower cost |
-| `--last-frame` | seedance | Return last frame for multi-shot chaining |
-| `--watermark` | seedance | Add watermark to video |
+| `--last-frame` | seedance, seedance2 | Return last frame for multi-shot chaining |
+| `--watermark` | seedance, seedance2 | Add watermark to video |
+| `--image2` | seedance2 | Additional reference image 2 (up to 4 total) |
+| `--image3` | seedance2 | Additional reference image 3 |
+| `--image4` | seedance2 | Additional reference image 4 |
+| `--ref-video` | seedance2 | Reference video for style/motion |
+| `--ref-audio` | seedance2 | Reference audio for background music |
 | `--resize-mode` | sora2 | Resize mode for reference image |
 | `--quality` | kling | Video quality: 720p, 1080p |
 | `--sound` | kling | Sound: on, off (default: on) |
@@ -68,6 +74,12 @@ kamay video submit --model kling --prompt "Ocean waves at sunset" --quality 1080
 
 # Veo with style reference
 kamay video submit --model veo --prompt "Urban landscape" --style-ref "https://example.com/style.jpg"
+
+# Seedance 2.0 with multiple reference images
+kamay video submit --model seedance2 --prompt "Product showcase with lifestyle scene" --image ./product.jpg --image2 ./scene.jpg --duration 8
+
+# Seedance 2.0 with reference video
+kamay video submit --model seedance2 --prompt "Similar motion and style" --ref-video ./reference.mp4
 ```
 
 ### `kamay video status` — Check Task Status
@@ -131,6 +143,14 @@ kamay video submit --model seedance --prompt "..." --json
 kamay video status --task-id "xxx" --provider seedance --json
 # Returns: {"status": "completed", "video_uri": "mention://...", ...}
 ```
+
+**Async polling best practices:**
+- Video generation typically takes **1-5 minutes**. Do NOT poll immediately after submit.
+- **Wait 60 seconds** before the first status check.
+- **Poll every 15-20 seconds** after the initial wait.
+- **Stop after 10 polls** — if still not ready, inform the user with the task_id for manual follow-up.
+- **Terminal states**: `COMPLETED`/`SUCCEEDED` (video auto-downloaded), `FAILED`/`EXPIRED`/`CANCELLED` (error).
+- Do NOT use `kamay video wait` in agent context — it blocks the process and may timeout.
 
 ### For Terminal Users (blocking)
 

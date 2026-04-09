@@ -1,6 +1,6 @@
 ---
 name: kamay-cli
-description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, video generation (Seedance, Sora2, Kling, Veo), and creative brief writing.
+description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, video generation (Seedance, Seedance2, Sora2, Kling, Veo), and creative brief writing.
 version: 0.2.0
 ---
 
@@ -113,6 +113,7 @@ Generate AI videos from text prompts and/or reference images using multiple mode
 | Model | Provider | Duration | Highlights |
 |-------|----------|----------|------------|
 | **seedance** | Volcengine Seedance 1.5 Pro | 4-12s | Audio sync, draft mode, multi-shot chaining |
+| **seedance2** | Volcengine Seedance 2.0 | 4-15s | Multi-ref images (1~4), ref video, ref audio |
 | **sora2** | Sora-2 Preview | 4/8/12s | Reference image support |
 | **kling** | Kling V3 | 3-15s | Start/end frame control, sound |
 | **veo** | Veo 3.1 (Google) | 4/6/8s | Style/subject references, audio |
@@ -130,6 +131,19 @@ kamay video wait --model seedance --prompt "A cat playing piano in a jazz bar" -
 kamay video submit --model kling --prompt "Product showcase" --image ./product.jpg --json
 kamay video status --task-id "abc123" --provider evolink --json
 ```
+
+**Async Task Handling for Agents:**
+
+Video generation is async and typically takes **1-5 minutes**. Agents MUST use the non-blocking `submit` + `status` pattern:
+
+1. **Submit**: `kamay video submit --model <model> --prompt "..." --json` → returns `task_id` and `provider`
+2. **Wait before first poll**: Wait **60 seconds** before the first status check (videos are never ready immediately)
+3. **Poll**: `kamay video status --task-id <id> --provider <provider> --json` → returns status
+4. **Poll interval**: Check every **15-20 seconds** after the initial wait
+5. **Max polls**: Stop after **10 attempts** — if still not ready, inform the user and provide the task_id for manual follow-up
+6. **Terminal states**: `COMPLETED`/`SUCCEEDED` = done (video auto-downloaded), `FAILED`/`EXPIRED`/`CANCELLED` = error
+
+Do NOT use `kamay video wait` in agent context — it blocks the process and may timeout.
 
 See: [Video Commands](./references/commands-video.md)
 

@@ -181,6 +181,7 @@ Generate complete storyboard based on selected proposal. Reference [Prompt Templ
 |----------|------------------|-------------|
 | Product close-up / high fidelity | Veo | subject_reference (product photo) + style_reference (anchor) |
 | Person + product scene | Kling / Veo | Character/product anchor as image_start / reference |
+| Multi-reference composition | Seedance 2.0 | Up to 4 reference images + optional ref video/audio |
 | Pure atmosphere / camera move | Sora-2 / Kling | text-to-video (no anchor reference) |
 | First-to-last frame transition | Veo / Seedance | first_frame + last_frame |
 | No-face scene | Sora-2 | Anchor as reference (note: no face reference support) |
@@ -230,10 +231,18 @@ Using **Sora-2**:
 - `--duration`: 4/8/12s (pick closest)
 - **No face reference support** — avoid for people-related shots
 
-Using **Seedance**:
+Using **Seedance** (1.5 Pro):
 - Supports first frame + last frame transition mode (`--last-frame`)
 - `--draft` mode for 480p preview first
 - `--audio` for synced audio generation
+
+Using **Seedance 2.0**:
+- `--image`, `--image2`, `--image3`, `--image4`: Up to 4 reference images (product photos, scene anchors)
+- `--ref-video`: Reference video for motion/style transfer
+- `--ref-audio`: Reference audio for background music matching
+- `--duration`: 4-15s (default: 5)
+- `--last-frame` for multi-shot chaining
+- Best for: multi-reference composition where you want the model to blend multiple visual references
 
 ### Step 9: Save Creative Document + Summarize Results
 
