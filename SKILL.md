@@ -1,7 +1,7 @@
 ---
 name: kamay-cli
-description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, video generation (Seedance, Seedance2, Sora2, Kling, Veo), and creative brief writing.
-version: 0.2.0
+description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok, Reddit, Xiaohongshu, Douyin), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, video generation (Seedance, Seedance2, Sora2, Kling, Veo), and creative brief writing.
+version: 0.3.0
 ---
 
 # Kamay CLI User Guide
@@ -44,12 +44,18 @@ Use `kamay <module> --help` and `kamay <module> <command> --help` to explore all
 | **google** | Google Trends search interest over time |
 | **meta** | Meta (Facebook/Instagram) Ads Library search & detail |
 | **tiktok** | TikTok video search, ads library, video comments |
+| **reddit** | Reddit post/community search, subreddit feed, post details & comments |
+| **xiaohongshu** | Xiaohongshu (小红书) note search, note details, note comments |
+| **douyin** | Douyin (抖音) video search, video details, comments & replies |
 
 For detailed command parameters, see:
 - [Amazon Commands](./references/commands-amazon.md)
 - [Google Trends Commands](./references/commands-google.md)
 - [Meta Ads Commands](./references/commands-meta.md)
 - [TikTok Commands](./references/commands-tiktok.md)
+- [Reddit Commands](./references/commands-reddit.md)
+- [Xiaohongshu Commands](./references/commands-xiaohongshu.md)
+- [Douyin Commands](./references/commands-douyin.md)
 
 ### 2. Market Insight & Visual Reports
 
@@ -180,7 +186,7 @@ kamay resource download -u "mention://xxx" -o ./images
 ### End-to-End: Data → Report → Creative
 
 ```
-1. Collect data (amazon/google/meta/tiktok commands)
+1. Collect data (amazon/google/meta/tiktok/reddit/xiaohongshu/douyin commands)
 2. Generate market insight report (Market Analyst)
 3. Convert report to visual HTML page (Report to HTML)
 4. Create creative brief from insights (Creative Brief)
@@ -212,6 +218,24 @@ kamay tiktok search-ads --q "fitness app" --region DE
 kamay tiktok search-videos --keyword "product review"
 ```
 
+**Social Media & Community Research**:
+```bash
+# Reddit — find consumer discussions and sentiment
+kamay reddit search --query "wireless earbuds review" --sort TOP --time_range month
+kamay reddit subreddit-feed --subreddit_name headphones --sort HOT
+kamay reddit post-comments --post_id "<post_id>" --sort_type TOP
+
+# Xiaohongshu — Chinese social commerce insights
+kamay xiaohongshu search-notes --keyword "蓝牙耳机" --sort popularity_descending
+kamay xiaohongshu note-detail --note_id "<note_id>" --xsec_token "<xsec_token>"
+kamay xiaohongshu note-comments --note_id "<note_id>" --limit 50
+
+# Douyin — Chinese short video trends
+kamay douyin video-search --keyword "蓝牙耳机测评" --sort_type 1 --publish_time 7
+kamay douyin video-detail --aweme_id "<aweme_id>"
+kamay douyin video-comments --aweme_id "<aweme_id>" --count 50
+```
+
 **Google Trends Validation**:
 ```bash
 kamay google trends-get-interest-over-time --q "wireless earbuds" --geo US
@@ -228,7 +252,7 @@ For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
 ## Reference Documents
 
 - [Installation Guide](./references/INSTALL.md) | [Upgrade Guide](#upgrade-guide)
-- **Commands**: [Amazon](./references/commands-amazon.md) | [Google](./references/commands-google.md) | [Meta](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Video](./references/commands-video.md) | [Feedback](./references/commands-feedback.md)
+- **Commands**: [Amazon](./references/commands-amazon.md) | [Google](./references/commands-google.md) | [Meta](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Reddit](./references/commands-reddit.md) | [Xiaohongshu](./references/commands-xiaohongshu.md) | [Douyin](./references/commands-douyin.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Video](./references/commands-video.md) | [Feedback](./references/commands-feedback.md)
 - **Insights**: [Market Analyst](./references/market-analyst.md) | [Report to HTML](./references/report2html.md)
 - **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies) | [Video Commands](./references/commands-video.md) | [Video Ad Generator](./references/video-ad-generator.md)
 - **Use Cases**: [Typical Use Cases](./references/use-cases.md)
