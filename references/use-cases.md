@@ -2,6 +2,8 @@
 
 This document provides common data analysis workflows.
 
+Data commands are APIMux-backed. Use these examples as workflow patterns, and run `kamay <module> <command> --help` when you need current flags or enum values.
+
 ---
 
 ## Workflow 1: Competitor Deep Analysis
@@ -12,23 +14,23 @@ This document provides common data analysis workflows.
 
 ```bash
 # 1. Search for competitors to get candidate ASIN list
-kamay amazon search-products \
+kamay amazon search_products \
   --q "wireless earbuds bluetooth" \
   --market US
 
 # 2. Get target competitor detailed information
-kamay amazon get-product \
+kamay amazon get_product \
   --asin B09V3KXJPB \
   --market US
 
 # 3. Analyze competitor reviews (last 6 months)
-kamay amazon get-product-reviews \
+kamay amazon get_product_reviews \
   --asin B09V3KXJPB \
   --market US \
-  --start_date 2024-06-01
+  --start-date 2024-06-01
 
 # 4. View competitor keyword layout
-kamay amazon list-asin-keywords \
+kamay amazon list_asin_keywords \
   --asin B09V3KXJPB \
   --market US
 ```
@@ -51,19 +53,19 @@ kamay amazon list-asin-keywords \
 
 ```bash
 # 1. Search for target category
-kamay amazon search-category \
+kamay amazon search_category \
   --name "Bluetooth Headphones" \
   --market US
 
 # 2. Get category best sellers (Top 100)
-kamay amazon get-category-best-sellers \
-  --node_id 3743561 \
+kamay amazon get_category_best_sellers \
+  --node-id 3743561 \
   --market US
 
 # 3. Get category multi-dimensional trends (batch query)
-kamay amazon get-category-trend \
-  --node_id 3743561 \
-  --trend_types "sales_volume,avg_price,brand_count,seller_count" \
+kamay amazon get_category_trend \
+  --node-id 3743561 \
+  --trend-types "sales_volume,avg_price,brand_count,seller_count" \
   --market US
 ```
 
@@ -86,22 +88,22 @@ kamay amazon get-category-trend \
 
 ```bash
 # 1. Get seed keyword overview
-kamay amazon get-keyword-overview \
+kamay amazon get_keyword_overview \
   --keyword "wireless earbuds" \
   --market US
 
 # 2. Expand related keywords
-kamay amazon expand-keywords \
+kamay amazon expand_keywords \
   --keyword "wireless earbuds" \
   --market US
 
 # 3. Compare multiple keyword trends
-kamay amazon get-keyword-trends \
+kamay amazon get_keyword_trends \
   --keywords "wireless earbuds,bluetooth headphones,airpods" \
   --market US
 
 # 4. View ABA trending keywords (discover opportunity words)
-kamay amazon query-aba-keywords \
+kamay amazon query_aba_keywords \
   --market US
 ```
 
@@ -124,25 +126,25 @@ kamay amazon query-aba-keywords \
 
 ```bash
 # 1. Meta (Facebook/Instagram) ad analysis
-kamay meta ads-search-ads \
+kamay meta_ads search_ads \
   --q "nike shoes" \
   --country US \
-  --active_status active
+  --active-status active
 
 # 2. Get specific ad details
-kamay meta ads-get-ad-detail \
-  --ad_id "<ad_id_from_search>"
+kamay meta_ads get_ad_detail \
+  --ad-id "<ad_id_from_search>"
 
 # 3. TikTok ad analysis
-kamay tiktok search-ads \
-  --q "fitness app" \
-  --region DE
+kamay google_ads search_advertisers \
+  --query "fitness app" \
+  --region US
 
 # 4. TikTok popular video research
-kamay tiktok search-videos \
+kamay tiktok search_videos \
   --keyword "product review" \
-  --sort_by 1 \
-  --publish_time 30
+  --sort-by 1 \
+  --publish-time 30
 ```
 
 ### Analysis Dimensions
@@ -162,7 +164,7 @@ kamay tiktok search-videos \
 
 ```bash
 # Get search trends (supports multi-keyword comparison)
-kamay google trends-get-interest-over-time \
+kamay google_trends get_interest_over_time \
   --q "wireless earbuds" \
   --geo US
 ```
@@ -184,28 +186,28 @@ kamay google trends-get-interest-over-time \
 
 ```bash
 # 1. Category trend analysis
-kamay amazon search-category --name "Target Category" --market US
-kamay amazon get-category-trend \
-  --node_id <node_id> \
-  --trend_types "sales_volume,avg_price,brand_count" \
+kamay amazon search_category --name "Target Category" --market US
+kamay amazon get_category_trend \
+  --node-id <node_id> \
+  --trend-types "sales_volume,avg_price,brand_count" \
   --market US
 
 # 2. Competitor analysis (Top 5)
-kamay amazon get-category-best-sellers --node_id <node_id> --market US
+kamay amazon get_category_best_sellers --node-id <node_id> --market US
 # For each competitor execute:
-kamay amazon get-product --asin <asin> --market US
-kamay amazon get-product-reviews --asin <asin> --market US
+kamay amazon get_product --asin <asin> --market US
+kamay amazon get_product_reviews --asin <asin> --market US
 
 # 3. Keyword opportunities
-kamay amazon get-keyword-overview --keyword "main keyword" --market US
-kamay amazon expand-keywords --keyword "main keyword" --market US
+kamay amazon get_keyword_overview --keyword "main keyword" --market US
+kamay amazon expand_keywords --keyword "main keyword" --market US
 
 # 4. Ad environment
-kamay meta ads-search-ads --q "main keyword" --country US
-kamay tiktok search-ads --q "main keyword" --region US
+kamay meta_ads search_ads --q "main keyword" --country US
+kamay google_ads search_advertisers --query "main keyword" --region US
 
 # 5. Google Trends validation
-kamay google trends-get-interest-over-time --q "main keyword" --geo US
+kamay google_trends get_interest_over_time --q "main keyword" --geo US
 ```
 
 ### Decision Framework
@@ -228,16 +230,16 @@ kamay google trends-get-interest-over-time --q "main keyword" --geo US
 
 ```bash
 # 1. Get target product reviews
-kamay amazon get-product-reviews \
+kamay amazon get_product_reviews \
   --asin B09V3KXJPB \
   --market US \
-  --start_date 2024-01-01
+  --start-date 2024-01-01
 
 # 2. Get competitor reviews for comparison
-kamay amazon get-product-reviews \
+kamay amazon get_product_reviews \
   --asin <competitor_asin> \
   --market US \
-  --start_date 2024-01-01
+  --start-date 2024-01-01
 ```
 
 ### Analysis Dimensions
@@ -264,8 +266,8 @@ MARKET="US"
 
 for ASIN in "${ASINS[@]}"; do
     echo "Analyzing $ASIN..."
-    kamay amazon get-product --asin $ASIN --market $MARKET > "${ASIN}_product.json"
-    kamay amazon get-product-reviews --asin $ASIN --market $MARKET > "${ASIN}_reviews.json"
+    kamay amazon get_product --asin $ASIN --market $MARKET > "${ASIN}_product.json"
+    kamay amazon get_product_reviews --asin $ASIN --market $MARKET > "${ASIN}_reviews.json"
 done
 ```
 
@@ -273,5 +275,5 @@ done
 
 ```bash
 # Process JSON output with jq
-kamay amazon search-products --q "keyword" --market US | jq '.products[] | {asin, title, price}'
+kamay amazon search_products --q "keyword" --market US | jq '.products[] | {asin, title, price}'
 ```

@@ -1,143 +1,39 @@
-# Reddit Module Commands Reference
+# Reddit Commands Reference
+
+Reddit is now an APIMux-backed data module exposed as `kamay reddit`.
+
+## Important
+
+Parameters and command help are proxied from the server-side APIMux CLI. Treat live help as the source of truth:
+
+```bash
+kamay reddit --help
+kamay reddit search --help
+kamay reddit get_subreddit_feed --help
+kamay reddit get_post_detail --help
+kamay reddit get_post_comments --help
+```
+
+`--help` is not billed. Data execution is billed through the normal Kamay API key path.
+
+Command names may be written with underscores or hyphens in `kamay`; the CLI normalizes hyphens to underscores before proxying to APIMux.
 
 ## Command Overview
 
 | Command | Function |
 |---------|----------|
 | `search` | Search Reddit posts, communities, comments, media, or users |
-| `subreddit-feed` | Get posts from a specific subreddit |
-| `post-details` | Get full details for a single post |
-| `post-comments` | Get comments for a post |
+| `get_subreddit_feed` | Get posts from a subreddit |
+| `get_post_detail` | Get full details for one post |
+| `get_post_comments` | Get comments for a post |
 
----
-
-## search
-
-Search Reddit by keyword across posts, communities, comments, media, or users.
+## Examples
 
 ```bash
-kamay reddit search --query "best python libraries" --search_type post --sort TOP --time_range month
+kamay reddit search --query "wireless earbuds review" --search-type post --sort top --time-range month
+kamay reddit get_subreddit_feed --subreddit-name headphones --sort hot
+kamay reddit get_post_detail --post-id "t3_1ojnh50"
+kamay reddit get_post_comments --post-id "t3_1ojnh50" --sort-type top
 ```
 
-### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `query` | string | Yes | Search keyword |
-| `search_type` | string | No | Type: `post`, `community`, `comment`, `media`, `user` |
-| `sort` | string | No | Sort: `TOP`, `RELEVANCE`, `NEW`, `COMMENTS` |
-| `time_range` | string | No | Time range: `hour`, `day`, `week`, `month`, `year`, `all` |
-| `after` | string | No | Pagination cursor from previous results |
-
-### Returns
-
-- Post titles, scores, subreddit names
-- Author info
-- Pagination cursor for next page
-
-### Examples
-
-```bash
-# Search for product review posts sorted by top, last month
-kamay reddit search --query "wireless earbuds review" --search_type post --sort TOP --time_range month
-
-# Search for communities related to a topic
-kamay reddit search --query "skincare" --search_type community
-
-# Paginate through results
-kamay reddit search --query "AI tools" --sort TOP --after "<cursor>"
-```
-
----
-
-## subreddit-feed
-
-Get posts from a specific subreddit.
-
-```bash
-kamay reddit subreddit-feed --subreddit_name python --sort HOT
-```
-
-### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `subreddit_name` | string | Yes | Subreddit name (without r/) |
-| `sort` | string | No | Sort: `HOT`, `NEW`, `TOP`, `RISING` |
-| `after` | string | No | Pagination cursor from previous results |
-
-### Returns
-
-- Post list with titles, scores, author info
-- Pagination cursor
-
-### Examples
-
-```bash
-# Get hot posts from r/python
-kamay reddit subreddit-feed --subreddit_name python --sort HOT
-
-# Get newest posts from r/entrepreneur
-kamay reddit subreddit-feed --subreddit_name entrepreneur --sort NEW
-```
-
----
-
-## post-details
-
-Get full details for a single Reddit post.
-
-```bash
-kamay reddit post-details --post_id "t3_1ojnh50"
-```
-
-### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `post_id` | string | Yes | Post ID (e.g., `t3_1ojnh50`) |
-
-### Returns
-
-- Title, body text
-- Score, upvote ratio
-- Author, subreddit
-- Media attachments
-
----
-
-## post-comments
-
-Get comments for a Reddit post.
-
-```bash
-kamay reddit post-comments --post_id "t3_1ojnh50" --sort_type TOP
-```
-
-### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `post_id` | string | Yes | Post ID (e.g., `t3_1ojnh50`) |
-| `sort_type` | string | No | Sort: `TOP`, `NEW`, `BEST`, `CONTROVERSIAL` |
-| `after` | string | No | Pagination cursor |
-
-### Returns
-
-- Comment text
-- Author info
-- Score / likes
-- Reply threads
-
-### Workflow
-
-```bash
-# 1. Search for posts
-kamay reddit search --query "best headphones 2025" --sort TOP --time_range month
-
-# 2. Get post details
-kamay reddit post-details --post_id "<post_id>"
-
-# 3. Read comments for consumer insights
-kamay reddit post-comments --post_id "<post_id>" --sort_type TOP
-```
+Use post IDs from search/feed results. Use pagination cursors from response metadata when continuing a result set.

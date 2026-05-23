@@ -7,9 +7,10 @@
 [Kamay](https://kamay.ai/) CLI + Skill 是面向数据驱动营销的专业命令行工具，提供多平台数据分析能力：
 
 - **Amazon** - 电商数据分析（商品、品类、关键词、评价）
-- **Google** - Google Trends 搜索趋势分析
-- **Meta** - Facebook/Instagram 广告分析
-- **TikTok** - TikTok 视频和广告分析
+- **Google Trends / Google Ads** - 搜索趋势验证与广告创意分析
+- **Meta Ads** - Facebook/Instagram 广告分析
+- **TikTok** - TikTok 视频、评论与 Shop 数据分析
+- **Reddit / 小红书 / 抖音 / TrendCloud** - 社媒洞察与市场趋势分析
 
 ## 安装使用
 
@@ -28,8 +29,13 @@
 | **命令参考** | |
 | Amazon 命令 | [commands-amazon.md](./references/commands-amazon.md) |
 | Google Trends 命令 | [commands-google.md](./references/commands-google.md) |
+| Google Ads 命令 | [commands-google-ads.md](./references/commands-google-ads.md) |
 | Meta 广告命令 | [commands-meta.md](./references/commands-meta.md) |
 | TikTok 命令 | [commands-tiktok.md](./references/commands-tiktok.md) |
+| Reddit 命令 | [commands-reddit.md](./references/commands-reddit.md) |
+| 小红书命令 | [commands-xiaohongshu.md](./references/commands-xiaohongshu.md) |
+| 抖音命令 | [commands-douyin.md](./references/commands-douyin.md) |
+| TrendCloud 命令 | [commands-trendcloud.md](./references/commands-trendcloud.md) |
 | Resource 资源管理 | [commands-resource.md](./references/commands-resource.md) |
 | Image 图片生成 | [commands-image.md](./references/commands-image.md) |
 | Feedback 反馈 | [commands-feedback.md](./references/commands-feedback.md) |
