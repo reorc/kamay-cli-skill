@@ -1,260 +1,60 @@
-# Amazon Module Commands Reference
+# Amazon Commands Reference
+
+Amazon is now an APIMux-backed data module exposed as `kamay amazon`.
+
+## Important
+
+Parameters and command help are proxied from the server-side APIMux CLI. Treat live help as the source of truth:
+
+```bash
+kamay amazon --help
+kamay amazon search_products --help
+kamay amazon get_product --help
+kamay amazon get_product_reviews --help
+```
+
+`--help` is not billed. Data execution is billed through the normal Kamay API key path.
+
+Command names may be written with underscores or hyphens in `kamay`; the CLI normalizes hyphens to underscores before proxying to APIMux.
 
 ## Command Overview
 
 | Command | Function |
 |---------|----------|
-| `search-products` | Search products by keyword |
-| `get-product` | Get product details |
-| `get-product-reviews` | Get product reviews |
-| `search-category` | Search categories |
-| `get-category-best-sellers` | Get category best sellers |
-| `get-category-trend` | Get category trends |
-| `get-keyword-overview` | Keyword overview |
-| `get-keyword-trends` | Keyword trends |
-| `expand-keywords` | Expand keywords |
-| `list-asin-keywords` | ASIN-related keywords |
-| `query-aba-keywords` | ABA trending keywords |
+| `search_products` | Search products by keyword |
+| `get_product` | Get product details |
+| `get_product_reviews` | Get product reviews |
+| `search_category` | Search categories |
+| `get_category_best_sellers` | Get category best sellers |
+| `get_category_trend` | Get category trends |
+| `expand_keywords` | Expand keywords |
+| `get_keyword_overview` | Keyword overview |
+| `get_keyword_trends` | Keyword trends |
+| `list_asin_keywords` | ASIN-related keywords |
+| `query_aba_keywords` | ABA trending keywords |
+| `get_asin_sales_daily_trend` | Daily ASIN sales trend |
+| `get_asins_sales_history` | Batch ASIN sales history |
+| `get_variant_sales_30d` | Variant sales in the last 30 days |
 
----
-
-## Product Commands
-
-### search-products
-
-Search Amazon products by keyword.
+## Examples
 
 ```bash
-kamay amazon search-products --q "wireless earbuds" --market US
+# Product and review research
+kamay amazon search_products --q "wireless earbuds" --market US
+kamay amazon get_product --asin B09V3KXJPB --market US
+kamay amazon get_product_reviews --asin B09V3KXJPB --market US --start-date 2024-01-01
+
+# Category research
+kamay amazon search_category --name "Cell Phones" --market US
+kamay amazon get_category_best_sellers --node-id 3743561 --market US
+kamay amazon get_category_trend --node-id 3743561 --market US --trend-types "sales_volume,avg_price,brand_count"
+
+# Keyword research
+kamay amazon get_keyword_overview --keyword "wireless earbuds" --market US
+kamay amazon expand_keywords --keyword "headphones" --market US
+kamay amazon get_keyword_trends --keywords "wireless earbuds,bluetooth headphones" --market US
+kamay amazon list_asin_keywords --asin B09V3KXJPB --market US
+kamay amazon query_aba_keywords --keyword "yoga mat" --market US
 ```
 
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `q` | string | Yes | Search keyword |
-| `market` | string | Yes | Market code |
-
-**Returns:** ASIN, title, price, rating, thumbnail
-
----
-
-### get-product
-
-Get detailed product information by ASIN.
-
-```bash
-kamay amazon get-product --asin B09V3KXJPB --market US
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `asin` | string | Yes | 10-character alphanumeric |
-| `market` | string | Yes | Market code |
-
-**Returns:** Full product info, price, rating, images, variants, features
-
----
-
-### get-product-reviews
-
-Get product reviews.
-
-```bash
-kamay amazon get-product-reviews \
-  --asin B09V3KXJPB \
-  --market US \
-  --start_date 2024-01-01 \
-  --only_purchase 1 \
-  --page_index 1
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `asin` | string | Yes | ASIN |
-| `market` | string | Yes | Market code |
-| `start_date` | string | No | Start date YYYY-MM-DD |
-| `only_purchase` | int | No | 1=Verified Purchase only |
-| `page_index` | int | No | Page number |
-
----
-
-## Category Commands
-
-### search-category
-
-Search categories to get Node ID.
-
-```bash
-kamay amazon search-category --name "Cell Phones" --market US --limit 10
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `name` | string | Yes | Category name (supports Chinese and English) |
-| `market` | string | Yes | Market code |
-| `limit` | int | No | Result limit |
-
----
-
-### get-category-best-sellers
-
-Get category best sellers Top 100.
-
-```bash
-kamay amazon get-category-best-sellers --node_id 3743561 --market US
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `node_id` | string | Yes | Category Node ID |
-| `market` | string | Yes | Market code |
-
----
-
-### get-category-trend
-
-Get category historical trends (supports multiple metrics).
-
-```bash
-kamay amazon get-category-trend \
-  --node_id 3743561 \
-  --trend_types "sales_volume,avg_price,brand_count,seller_count" \
-  --market US
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `node_id` | string | Yes | Node ID |
-| `trend_types` | string | Yes | Comma-separated metrics |
-| `market` | string | Yes | Market code |
-
-**Supported trend_types:**
-- `sales_volume` - Sales volume
-- `avg_price` - Average price
-- `brand_count` - Number of brands
-- `seller_count` - Number of sellers
-- `avg_profit` - Average profit
-- `review_count` - Number of reviews
-
----
-
-## Keyword Commands
-
-### get-keyword-overview
-
-Get keyword market overview.
-
-```bash
-kamay amazon get-keyword-overview --keyword "wireless earbuds" --market US
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `keyword` | string | Yes | Keyword |
-| `market` | string | Yes | Market code |
-
-**Returns:** Search volume, competition, CPC estimate
-
----
-
-### get-keyword-trends
-
-Get keyword historical search trends.
-
-```bash
-kamay amazon get-keyword-trends \
-  --keywords "wireless earbuds,airpods,bluetooth headphones" \
-  --market US
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `keywords` | stringArray | Yes | Keyword list (multiple allowed) |
-| `market` | string | Yes | Market code |
-
----
-
-### expand-keywords
-
-Expand related keywords (long-tail discovery).
-
-```bash
-kamay amazon expand-keywords --keyword "headphones" --market US
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `keyword` | string | Yes | Seed keyword |
-| `market` | string | Yes | Market code |
-
----
-
-### list-asin-keywords
-
-Get ASIN-related keywords.
-
-```bash
-kamay amazon list-asin-keywords --asin B09V3KXJPB --market US
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `asin` | string | Yes | ASIN |
-| `market` | string | Yes | Market code |
-
-**Returns:** Keyword list, organic rank, ad rank, search volume
-
----
-
-### query-aba-keywords
-
-Query Amazon Brand Analytics (ABA) trending keywords.
-
-```bash
-kamay amazon query-aba-keywords \
-  --market US \
-  --page_index 1 \
-  --page_size 100
-```
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `market` | string | Yes | Market code |
-| `page_index` | int | No | Page number |
-| `page_size` | int | No | Items per page |
-
----
-
-## Market Codes
-
-| Code | Market |
-|------|--------|
-| US | United States |
-| UK | United Kingdom |
-| DE | Germany |
-| JP | Japan |
-| CA | Canada |
-| FR | France |
-| ES | Spain |
-| IT | Italy |
+Use marketplace codes such as `US`, `UK`, `DE`, `JP`, `CA`, `FR`, `ES`, and `IT`. Confirm current flag names and enum values with `--help` before running a less familiar command.

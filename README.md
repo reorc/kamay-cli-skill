@@ -7,9 +7,10 @@
 [Kamay](https://kamay.ai/) CLI and Skill is a professional command-line tool for data-driven marketing, offering multi-platform data analysis capabilities:
 
 - **Amazon** - E-commerce data analysis (products, categories, keywords, reviews)
-- **Google** - Google Trends search trend analysis
-- **Meta** - Facebook/Instagram ads analysis
-- **TikTok** - TikTok video and ads analysis
+- **Google Trends / Google Ads** - Search trend validation and ad creative research
+- **Meta Ads** - Facebook/Instagram ads analysis
+- **TikTok** - TikTok video, comment, and shop data
+- **Reddit / Xiaohongshu / Douyin / TrendCloud** - Social and market trend research
 
 ## Installation
 
@@ -28,8 +29,13 @@ Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill
 | **Command Reference** | |
 | Amazon Commands | [commands-amazon.md](./references/commands-amazon.md) |
 | Google Trends Commands | [commands-google.md](./references/commands-google.md) |
+| Google Ads Commands | [commands-google-ads.md](./references/commands-google-ads.md) |
 | Meta Ads Commands | [commands-meta.md](./references/commands-meta.md) |
 | TikTok Commands | [commands-tiktok.md](./references/commands-tiktok.md) |
+| Reddit Commands | [commands-reddit.md](./references/commands-reddit.md) |
+| Xiaohongshu Commands | [commands-xiaohongshu.md](./references/commands-xiaohongshu.md) |
+| Douyin Commands | [commands-douyin.md](./references/commands-douyin.md) |
+| TrendCloud Commands | [commands-trendcloud.md](./references/commands-trendcloud.md) |
 | Resource Management | [commands-resource.md](./references/commands-resource.md) |
 | Image Generation | [commands-image.md](./references/commands-image.md) |
 | Feedback | [commands-feedback.md](./references/commands-feedback.md) |

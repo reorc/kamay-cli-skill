@@ -34,6 +34,8 @@ To check if a newer version is available, see [Upgrade Guide](#upgrade-guide) be
 
 Use `kamay <module> --help` and `kamay <module> <command> --help` to explore all available commands and parameters.
 
+**Data command source of truth:** data modules are APIMux-backed pass-through commands. Their live help is proxied from the server-side APIMux CLI, so command/flag details may change without a skill update. Before using a data command you are not already certain about, run `kamay <module> <command> --help`. Help is not billed; data execution uses the normal Kamay authentication and billing path.
+
 ## Capabilities Overview
 
 ### 1. Multi-Platform Data Acquisition
@@ -41,21 +43,25 @@ Use `kamay <module> --help` and `kamay <module> <command> --help` to explore all
 | Module | Function |
 |--------|----------|
 | **amazon** | Product search, category trends, keyword research, review analysis |
-| **google** | Google Trends search interest over time |
-| **meta** | Meta (Facebook/Instagram) Ads Library search & detail |
+| **google_trends** | Google Trends search interest over time |
+| **google_ads** | Google Ads advertiser and creative data |
+| **meta_ads** | Meta (Facebook/Instagram) Ads Library search & detail |
 | **tiktok** | TikTok video search, ads library, video comments |
 | **reddit** | Reddit post/community search, subreddit feed, post details & comments |
 | **xiaohongshu** | Xiaohongshu (小红书) note search, note details, note comments |
 | **douyin** | Douyin (抖音) video search, video details, comments & replies |
+| **trendcloud** | TrendCloud market trends and rankings |
 
 For detailed command parameters, see:
 - [Amazon Commands](./references/commands-amazon.md)
 - [Google Trends Commands](./references/commands-google.md)
+- [Google Ads Commands](./references/commands-google-ads.md)
 - [Meta Ads Commands](./references/commands-meta.md)
 - [TikTok Commands](./references/commands-tiktok.md)
 - [Reddit Commands](./references/commands-reddit.md)
 - [Xiaohongshu Commands](./references/commands-xiaohongshu.md)
 - [Douyin Commands](./references/commands-douyin.md)
+- [TrendCloud Commands](./references/commands-trendcloud.md)
 
 ### 2. Market Insight & Visual Reports
 
@@ -186,7 +192,7 @@ kamay resource download -u "mention://xxx" -o ./images
 ### End-to-End: Data → Report → Creative
 
 ```
-1. Collect data (amazon/google/meta/tiktok/reddit/xiaohongshu/douyin commands)
+1. Collect data (amazon/google_trends/google_ads/meta_ads/tiktok/reddit/xiaohongshu/douyin/trendcloud commands)
 2. Generate market insight report (Market Analyst)
 3. Convert report to visual HTML page (Report to HTML)
 4. Create creative brief from insights (Creative Brief)
@@ -198,47 +204,47 @@ kamay resource download -u "mention://xxx" -o ./images
 
 **Competitor Analysis**:
 ```bash
-kamay amazon search-products --q "wireless earbuds" --market US
-kamay amazon get-product --asin B09V3KXJPB --market US
-kamay amazon get-product-reviews --asin B09V3KXJPB --market US --start_date 2024-01-01
-kamay amazon list-asin-keywords --asin B09V3KXJPB --market US
+kamay amazon search_products --q "wireless earbuds" --market US
+kamay amazon get_product --asin B09V3KXJPB --market US
+kamay amazon get_product_reviews --asin B09V3KXJPB --market US --start-date 2024-01-01
+kamay amazon list_asin_keywords --asin B09V3KXJPB --market US
 ```
 
 **Category Trend Analysis**:
 ```bash
-kamay amazon search-category --name "Cell Phones" --market US
-kamay amazon get-category-best-sellers --node_id 3743561 --market US
-kamay amazon get-category-trend --node_id 3743561 --trend_types "sales_volume,avg_price,brand_count" --market US
+kamay amazon search_category --name "Cell Phones" --market US
+kamay amazon get_category_best_sellers --node-id 3743561 --market US
+kamay amazon get_category_trend --node-id 3743561 --trend-types "sales_volume,avg_price,brand_count" --market US
 ```
 
 **Ad Creative Research**:
 ```bash
-kamay meta ads-search-ads --q "nike shoes" --country US
-kamay tiktok search-ads --q "fitness app" --region DE
-kamay tiktok search-videos --keyword "product review"
+kamay meta_ads search_ads --q "nike shoes" --country US
+kamay google_ads search_advertisers --query "nike" --region US
+kamay tiktok search_videos --keyword "product review"
 ```
 
 **Social Media & Community Research**:
 ```bash
 # Reddit — find consumer discussions and sentiment
-kamay reddit search --query "wireless earbuds review" --sort TOP --time_range month
-kamay reddit subreddit-feed --subreddit_name headphones --sort HOT
-kamay reddit post-comments --post_id "<post_id>" --sort_type TOP
+kamay reddit search --query "wireless earbuds review" --sort top --time-range month
+kamay reddit get_subreddit_feed --subreddit-name headphones --sort hot
+kamay reddit get_post_comments --post-id "<post_id>" --sort-type top
 
 # Xiaohongshu — Chinese social commerce insights
-kamay xiaohongshu search-notes --keyword "蓝牙耳机" --sort popularity_descending
-kamay xiaohongshu note-detail --note_id "<note_id>" --xsec_token "<xsec_token>"
-kamay xiaohongshu note-comments --note_id "<note_id>" --limit 50
+kamay xiaohongshu search_notes --keyword "蓝牙耳机" --sort popularity_descending
+kamay xiaohongshu get_note_detail --note-id "<note_id>" --xsec-token "<xsec_token>"
+kamay xiaohongshu get_note_comments --note-id "<note_id>" --limit 50
 
 # Douyin — Chinese short video trends
-kamay douyin video-search --keyword "蓝牙耳机测评" --sort_type 1 --publish_time 7
-kamay douyin video-detail --aweme_id "<aweme_id>"
-kamay douyin video-comments --aweme_id "<aweme_id>" --count 50
+kamay douyin search_videos --keyword "蓝牙耳机测评" --sort-type likes --publish-time 1w
+kamay douyin get_video_detail --aweme-id "<aweme_id>"
+kamay douyin get_video_comments --aweme-id "<aweme_id>" --count 50
 ```
 
 **Google Trends Validation**:
 ```bash
-kamay google trends-get-interest-over-time --q "wireless earbuds" --geo US
+kamay google_trends get_interest_over_time --q "wireless earbuds" --geo US
 ```
 
 For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
@@ -252,7 +258,7 @@ For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
 ## Reference Documents
 
 - [Installation Guide](./references/INSTALL.md) | [Upgrade Guide](#upgrade-guide)
-- **Commands**: [Amazon](./references/commands-amazon.md) | [Google](./references/commands-google.md) | [Meta](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Reddit](./references/commands-reddit.md) | [Xiaohongshu](./references/commands-xiaohongshu.md) | [Douyin](./references/commands-douyin.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Video](./references/commands-video.md) | [Feedback](./references/commands-feedback.md)
+- **Commands**: [Amazon](./references/commands-amazon.md) | [Google Trends](./references/commands-google.md) | [Google Ads](./references/commands-google-ads.md) | [Meta Ads](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Reddit](./references/commands-reddit.md) | [Xiaohongshu](./references/commands-xiaohongshu.md) | [Douyin](./references/commands-douyin.md) | [TrendCloud](./references/commands-trendcloud.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Video](./references/commands-video.md) | [Feedback](./references/commands-feedback.md)
 - **Insights**: [Market Analyst](./references/market-analyst.md) | [Report to HTML](./references/report2html.md)
 - **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies) | [Video Commands](./references/commands-video.md) | [Video Ad Generator](./references/video-ad-generator.md)
 - **Use Cases**: [Typical Use Cases](./references/use-cases.md)

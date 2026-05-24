@@ -1,143 +1,47 @@
-# TikTok Module Commands Reference
+# TikTok Commands Reference
+
+TikTok is now an APIMux-backed data module exposed as `kamay tiktok`.
+
+## Important
+
+Parameters and command help are proxied from the server-side APIMux CLI. Treat live help as the source of truth:
+
+```bash
+kamay tiktok --help
+kamay tiktok search_videos --help
+kamay tiktok get_video_detail --help
+kamay tiktok list_comments --help
+kamay tiktok search_products --help
+```
+
+`--help` is not billed. Data execution is billed through the normal Kamay API key path.
+
+Command names may be written with underscores or hyphens in `kamay`; the CLI normalizes hyphens to underscores before proxying to APIMux.
 
 ## Command Overview
 
 | Command | Function |
 |---------|----------|
-| `search-videos` | Search TikTok videos |
-| `search-ads` | Search TikTok Ad Library |
-| `list-comments` | Get video comments |
+| `search_videos` | Search TikTok videos |
+| `get_video_detail` | Get details for one video |
+| `list_comments` | Get video comments |
+| `shop_products` | List products from a TikTok Shop seller |
+| `shop_product_info` | Get TikTok Shop product details |
+| `search_products` | Search TikTok Shop products |
+| `product_reviews` | Get TikTok Shop product reviews |
 
----
-
-## search-videos
-
-Search TikTok videos to get popular content data.
-
-```bash
-kamay tiktok search-videos --keyword "dance challenge"
-```
-
-### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `keyword` | string | Yes | Search keyword |
-| `sort_by` | int | No | Sort: 0-default, 1-likes, 2-publish date |
-| `publish_time` | int | No | Publish time: 0-all, 1-24h, 7-7days, 30-30days |
-
-### Returns
-
-- Video metadata
-- Likes/comments/shares count
-- View count
-- Creator info
-
-### Examples
+## Examples
 
 ```bash
-# Search for popular product review videos from the last 7 days
-kamay tiktok search-videos --keyword "product review" --sort_by 1 --publish_time 7
+# Content research
+kamay tiktok search_videos --keyword "product review" --sort-by likes --publish-time 1m --region US
+kamay tiktok get_video_detail --share-url "https://www.tiktok.com/@user/video/7123456789012345678"
+kamay tiktok list_comments --video-id "7123456789012345678" --count 20
 
-# Search for dance challenge videos
-kamay tiktok search-videos --keyword "dance challenge" --sort_by 1
+# TikTok Shop research
+kamay tiktok search_products --keyword "wireless microphone" --region US --count 40
+kamay tiktok shop_product_info --product-id "1729384756" --region GB
+kamay tiktok product_reviews --product-id "1729556436942358002" --sort latest --star 5
 ```
 
----
-
-## search-ads
-
-Search TikTok Ad Library.
-
-```bash
-kamay tiktok search-ads --q "fitness app" --region DE
-```
-
-### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `q` | string | Yes | Search keyword |
-| `region` | string | Yes | Region code |
-| `sort_by` | string | No | Sort method |
-
-### Sort Options
-
-| Value | Description |
-|-------|-------------|
-| `last_shown_date_newest_to_oldest` | Last shown date (new→old) |
-| `first_shown_date_newest_to_oldest` | First shown date (new→old) |
-
-### Returns
-
-- Advertiser information
-- Video links
-- Estimated audience
-- Spend estimate
-
-### Examples
-
-```bash
-# Search for fitness ads in Germany
-kamay tiktok search-ads --q "fitness" --region DE --sort_by last_shown_date_newest_to_oldest
-
-# Search for e-commerce ads in the US
-kamay tiktok search-ads --q "shop now" --region US
-```
-
-### Region Codes
-
-| Code | Region |
-|------|--------|
-| US | United States |
-| UK | United Kingdom |
-| DE | Germany |
-| FR | France |
-| IT | Italy |
-| ES | Spain |
-| CA | Canada |
-| AU | Australia |
-| JP | Japan |
-
----
-
-## list-comments
-
-Get TikTok video comments.
-
-```bash
-kamay tiktok list-comments --video_id "7123456789012345678"
-```
-
-### Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `video_id` | string | Yes | Video ID or full URL |
-
-### Supported Video ID Formats
-
-```bash
-# Use video ID directly
-kamay tiktok list-comments --video_id "7123456789012345678"
-
-# Use full video URL
-kamay tiktok list-comments --video_id "https://www.tiktok.com/@user/video/7123456789012345678"
-```
-
-### Returns
-
-- Comment content
-- Commenter info
-- Like count
-- Comment time
-
-### Workflow
-
-```bash
-# 1. First search for videos
-kamay tiktok search-videos --keyword "product review"
-
-# 2. Use the returned video_id to get comments
-kamay tiktok list-comments --video_id "<video_id>"
-```
+Prefer the live help output for exact enum values and pagination flags.
