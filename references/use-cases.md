@@ -143,8 +143,8 @@ kamay google_ads search_advertisers \
 # 4. TikTok popular video research
 kamay tiktok search_videos \
   --keyword "product review" \
-  --sort-by 1 \
-  --publish-time 30
+  --sort-by likes \
+  --publish-time 1m
 ```
 
 ### Analysis Dimensions
