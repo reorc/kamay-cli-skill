@@ -38,6 +38,7 @@
 | TrendCloud 命令 | [commands-trendcloud.md](./references/commands-trendcloud.md) |
 | Resource 资源管理 | [commands-resource.md](./references/commands-resource.md) |
 | Image 图片生成 | [commands-image.md](./references/commands-image.md) |
+| Audio 音频生成 | [commands-audio.md](./references/commands-audio.md) |
 | Feedback 反馈 | [commands-feedback.md](./references/commands-feedback.md) |
 | **用例与案例** | |
 | 典型用例 | [use-cases.md](./references/use-cases.md) |

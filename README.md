@@ -38,6 +38,7 @@ Follow instructions from https://raw.githubusercontent.com/reorc/kamay-cli-skill
 | TrendCloud Commands | [commands-trendcloud.md](./references/commands-trendcloud.md) |
 | Resource Management | [commands-resource.md](./references/commands-resource.md) |
 | Image Generation | [commands-image.md](./references/commands-image.md) |
+| Audio Generation | [commands-audio.md](./references/commands-audio.md) |
 | Feedback | [commands-feedback.md](./references/commands-feedback.md) |
 | **Use Cases** | |
 | Typical Use Cases | [use-cases.md](./references/use-cases.md) |

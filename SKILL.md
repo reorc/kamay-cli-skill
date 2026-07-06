@@ -1,6 +1,6 @@
 ---
 name: kamay-cli
-description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok, Reddit, Xiaohongshu, Douyin), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, video generation (Seedance, Seedance2, Sora2, Kling, Veo), and creative brief writing.
+description: Kamay CLI - Data-driven marketing analytics and creative tool. Data acquisition & analysis (Amazon, Google Trends, Meta Ads, TikTok, Reddit, Xiaohongshu, Douyin), visual HTML report generation, ad image creation (7 strategies), mood/lifestyle image generation, audio/voiceover generation, video generation (Seedance, Seedance2, Sora2, Kling, Veo), and creative brief writing.
 version: 0.3.0
 ---
 
@@ -118,7 +118,32 @@ Generate **text-free** lifestyle/mood images for brand visual exploration:
 
 See: [Mood Image Generator](./references/mood-image-generator.md)
 
-### 6. Video Generation
+### 6. Audio / Voiceover Generation
+
+Generate speech, narration, dubbing, poetry recitals, and audio-drama style voiceovers from text prompts.
+
+**Seed Audio speech generation:**
+```bash
+kamay audio generate-seed-audio-speech \
+  --input "A calm Mandarin narrator reads a product intro with light ambient room tone." \
+  --name "product-intro-voiceover"
+```
+
+Use `kamay audio generate-seed-audio-speech` when the user asks for:
+- Voiceover, dubbing, narration, spoken ads, podcast-style intros
+- Poetry or prose recital with expressive delivery
+- Short audio-drama scenes with prompt-described sound effects or background music cues
+
+Agent notes:
+- This command is synchronous; do not use video-style polling.
+- `--input` is required and is limited to 3000 characters. Split longer scripts into segments.
+- Dynamic flags keep underscores, for example `--estimated_duration_seconds` and `--client_request_id`.
+- Actual billing uses the provider-reported generated duration; `--estimated_duration_seconds` is only a preflight estimate.
+- Download the returned `mention://resource/...` with `kamay resource download` before playback or post-processing.
+
+See: [Audio Commands](./references/commands-audio.md)
+
+### 7. Video Generation
 
 Generate AI videos from text prompts and/or reference images using multiple models:
 
@@ -159,7 +184,7 @@ Do NOT use `kamay video wait` in agent context — it blocks the process and may
 
 See: [Video Commands](./references/commands-video.md)
 
-### 7. Video Ad Generation (Full Workflow)
+### 8. Video Ad Generation (Full Workflow)
 
 Generate complete video ads from product info: creative proposals → concept art → visual anchors → storyboard → video generation.
 
@@ -197,7 +222,8 @@ kamay resource download -u "mention://xxx" -o ./images
 3. Convert report to visual HTML page (Report to HTML)
 4. Create creative brief from insights (Creative Brief)
 5. Generate ad images or mood images (Ad/Mood Image Generator)
-6. Generate promotional videos (Video Generator)
+6. Generate voiceover/audio assets when needed (Audio Generator)
+7. Generate promotional videos (Video Generator)
 ```
 
 ### Quick Examples
@@ -258,9 +284,9 @@ For more workflow examples, see [Typical Use Cases](./references/use-cases.md).
 ## Reference Documents
 
 - [Installation Guide](./references/INSTALL.md) | [Upgrade Guide](#upgrade-guide)
-- **Commands**: [Amazon](./references/commands-amazon.md) | [Google Trends](./references/commands-google.md) | [Google Ads](./references/commands-google-ads.md) | [Meta Ads](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Reddit](./references/commands-reddit.md) | [Xiaohongshu](./references/commands-xiaohongshu.md) | [Douyin](./references/commands-douyin.md) | [TrendCloud](./references/commands-trendcloud.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Video](./references/commands-video.md) | [Feedback](./references/commands-feedback.md)
+- **Commands**: [Amazon](./references/commands-amazon.md) | [Google Trends](./references/commands-google.md) | [Google Ads](./references/commands-google-ads.md) | [Meta Ads](./references/commands-meta.md) | [TikTok](./references/commands-tiktok.md) | [Reddit](./references/commands-reddit.md) | [Xiaohongshu](./references/commands-xiaohongshu.md) | [Douyin](./references/commands-douyin.md) | [TrendCloud](./references/commands-trendcloud.md) | [Resource](./references/commands-resource.md) | [Image](./references/commands-image.md) | [Audio](./references/commands-audio.md) | [Video](./references/commands-video.md) | [Feedback](./references/commands-feedback.md)
 - **Insights**: [Market Analyst](./references/market-analyst.md) | [Report to HTML](./references/report2html.md)
-- **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies) | [Video Commands](./references/commands-video.md) | [Video Ad Generator](./references/video-ad-generator.md)
+- **Creative**: [Creative Brief](./references/creative-brief.md) | [Mood Image Generator](./references/mood-image-generator.md) | [Ad Image Generator](./references/ad-image-generator.md) | [Ad Strategy Guides](./references/ad-image-generator/) (7 strategies) | [Audio Commands](./references/commands-audio.md) | [Video Commands](./references/commands-video.md) | [Video Ad Generator](./references/video-ad-generator.md)
 - **Use Cases**: [Typical Use Cases](./references/use-cases.md)
 
 ## Upgrade Guide
