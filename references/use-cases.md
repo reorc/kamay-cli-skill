@@ -253,6 +253,32 @@ kamay amazon get_product_reviews \
 
 ---
 
+## Workflow 8: Poetic Voiceover or Audio-Drama Narration
+
+**Goal**: Generate a spoken audio asset with expressive delivery and prompt-described ambient sound.
+
+### Steps
+
+```bash
+# 1. Keep each prompt within 3000 characters. Split long poems or scripts into multiple segments.
+kamay audio generate-seed-audio-speech \
+  --input "场景：唐代浔阳江头，秋夜送客。环境音：远处江水轻拍船舷，微风吹过荻花，声音很轻，不要盖过人声。旁白（中年男性，沉稳、低缓，带离别惆怅）朗读：浔阳江头夜送客，枫叶荻花秋瑟瑟。音效：句末出现两三声清冷的琵琶拨弦，随后淡出。不要读出括号里的角色说明和音效说明，只输出最终有声朗读效果。" \
+  --name "pipa-short-voiceover"
+
+# 2. Download the returned mention://resource URI for playback or editing.
+kamay resource download -u "mention://resource/res_xxx" -o ./audio
+```
+
+### Prompt Design Checklist
+
+- Put exact spoken lines in the prompt.
+- Specify speaker age, gender, tone, pace, and emotional arc.
+- Describe sound effects and background music as supporting layers.
+- Say explicitly that stage directions and effect descriptions should not be read aloud.
+- Use `--estimated_duration_seconds` only as a credit preflight hint; actual billing uses generated duration.
+
+---
+
 ## Batch Operation Tips
 
 ### Using Scripts for Batch Queries
